@@ -1,5 +1,3 @@
-import { fade } from "@material-ui/core/styles/colorManipulator";
-
 const styles = theme => ({
   toolbar: {
     display: "flex",
@@ -10,10 +8,6 @@ const styles = theme => ({
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.paper, 0.15),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.paper, 0.5)
-    },
     marginRight: 0,
     width: "100%",
     [theme.breakpoints.up("sm")]: {

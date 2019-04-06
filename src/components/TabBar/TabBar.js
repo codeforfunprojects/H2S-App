@@ -8,7 +8,6 @@ import {
   Toolbar,
   FormControl,
   InputBase,
-  FormHelperText,
   InputLabel,
   Select,
   Input,
@@ -17,12 +16,13 @@ import {
 import SearchIcon from "@material-ui/icons/Search";
 import styles from "./styles";
 
-// TODO: Needs to accept array of strings
+// TODO: Filter and search need to be setup
+// TODO: Tabs are not wired in Home
 const TabBar = props => {
   const { tabs, value, onChange, classes } = props;
 
-  const labels = tabs.map(label => {
-    return <Tab label={label} />;
+  const labels = tabs.map((label, index) => {
+    return <Tab label={label} key={index} />;
   });
   return (
     <AppBar position="static" color="default">
