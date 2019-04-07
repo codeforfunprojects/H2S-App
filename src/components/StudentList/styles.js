@@ -1,16 +1,14 @@
 // StudentList styles
 const styles = theme => ({
-  checkInButton: {
-    color: "white",
-    marginRight: theme.spacing.unit * 2
+  evalGrid: {
+    paddingRight: theme.spacing.unit * 2
   },
-  checkOutButton: {
-    background: theme.palette.red.main,
+  evalButton: {
     color: "white",
-    "&:hover": {
-      background: theme.palette.red.dark
-    },
-    marginRight: theme.spacing.unit * 2
+    width: 100
+  },
+  checkInButton: {
+    paddingRight: theme.spacing.unit
   }
 });
 

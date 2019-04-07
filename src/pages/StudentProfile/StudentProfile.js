@@ -14,6 +14,7 @@ import {
   LinearProgress,
   Button
 } from "@material-ui/core";
+import CheckInButton from "../../components/CheckInButton/CheckInButton";
 
 const StudentProfile = props => {
   const { classes, match } = props;
@@ -52,28 +53,17 @@ const StudentProfile = props => {
                   </List>
                 </Grid>
                 <Grid item xs={12} md={2} className={classes.buttonGrid}>
-                  {true ? (
-                    <Button
-                      onClick={() => {
-                        console.log("Check Out");
-                      }}
-                      variant="contained"
-                      className={classes.checkOutButton}
-                    >
-                      Check-Out
-                    </Button>
-                  ) : (
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      className={classes.checkInButton}
-                      onClick={() => {
-                        console.log("Check In");
-                      }}
-                    >
-                      Check-In
-                    </Button>
-                  )}
+                  <CheckInButton checkedIn={true} />
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.evalButton}
+                    onClick={() => {
+                      console.log("Add Evaluation");
+                    }}
+                  >
+                    Add Eval
+                  </Button>
                 </Grid>
                 <Grid item xs={12} className={classes.progressGrid}>
                   <LinearProgress

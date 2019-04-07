@@ -11,8 +11,10 @@ import {
   ListItemText,
   Avatar,
   Button,
-  ListItemSecondaryAction
+  ListItemSecondaryAction,
+  Grid
 } from "@material-ui/core";
+import CheckInButton from "../CheckInButton/CheckInButton";
 
 const StudentList = props => {
   const { classes, students, checkInToggle, history } = props;
@@ -23,7 +25,6 @@ const StudentList = props => {
           history.push({ pathname: `student/${item.login}` });
         }}
         button
-        alignItems="flex-start"
         key={item.login}
       >
         <ListItemAvatar>
@@ -31,28 +32,23 @@ const StudentList = props => {
         </ListItemAvatar>
         <ListItemText primary={item.displayname} secondary={item.login} />
         <ListItemSecondaryAction>
-          {item.loggedIn ? (
-            <Button
-              onClick={() => {
-                checkInToggle(item.login);
-              }}
-              variant="contained"
-              className={classes.checkOutButton}
-            >
-              Check-Out
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.checkInButton}
-              onClick={() => {
-                checkInToggle(item.login);
-              }}
-            >
-              Check-In
-            </Button>
-          )}
+          <Grid container>
+            <Grid item xs={6} className={classes.evalGrid}>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.evalButton}
+                onClick={() => {
+                  console.log("Add Evaluation");
+                }}
+              >
+                Add Eval
+              </Button>
+            </Grid>
+            <Grid item xs={6} className={classes.checkInButton}>
+              <CheckInButton checkedIn={item.loggedIn} />
+            </Grid>
+          </Grid>
         </ListItemSecondaryAction>
       </ListItem>
     );

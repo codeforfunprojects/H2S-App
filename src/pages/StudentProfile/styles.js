@@ -37,15 +37,9 @@ const styles = theme => ({
   buttonGrid: {
     padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px 0px 0px`
   },
-  checkInButton: {
-    color: "white"
-  },
-  checkOutButton: {
-    background: theme.palette.red.main,
-    color: "white",
-    "&:hover": {
-      background: theme.palette.red.dark
-    }
+  evalButton: {
+    marginTop: theme.spacing.unit * 2,
+    width: "100%"
   }
 });
 
