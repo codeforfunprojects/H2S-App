@@ -3,6 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
+import { withRouter } from "react-router";
 import {
   List,
   ListItem,
@@ -14,12 +15,12 @@ import {
 } from "@material-ui/core";
 
 const StudentList = props => {
-  const { classes, students, checkInToggle } = props;
+  const { classes, students, checkInToggle, history } = props;
   const studentLI = students.map((item, index) => {
     return (
       <ListItem
         onClick={() => {
-          console.log(`Navigate to ${item.login}`);
+          history.push({ pathname: `student/${item.login}` });
         }}
         button
         alignItems="flex-start"
@@ -78,4 +79,4 @@ StudentList.defaultProps = {
   }
 };
 
-export default withStyles(styles)(StudentList);
+export default withRouter(withStyles(styles)(StudentList));

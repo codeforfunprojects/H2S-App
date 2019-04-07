@@ -18,6 +18,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 const Login = props => {
   const { classes } = props;
+  console.log(props);
   return (
     <main className={classes.main}>
       <Paper className={classes.paper}>
