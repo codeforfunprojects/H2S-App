@@ -1,8 +1,10 @@
 // Login component
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
+import { withRouter } from "react-router-dom";
+import firebase from "../../services/firebase";
 import {
   Paper,
   Avatar,
@@ -11,14 +13,27 @@ import {
   Input,
   InputLabel,
   Button
-  //   FormControlLabel,
-  //   Checkbox
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 const Login = props => {
-  const { classes } = props;
-  console.log(props);
+  const { classes, history } = props;
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const authenticate = async () => {
+    try {
+      console.log(email, password);
+
+      // await firebase.login(email, password);
+      // Update context API?
+      // history.push()
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <main className={classes.main}>
       <Paper className={classes.paper}>
@@ -31,7 +46,16 @@ const Login = props => {
         <form className={classes.form}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
+            <Input
+              id="email"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              value={email}
+              onChange={e => {
+                setEmail(e.target.value);
+              }}
+            />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="password">Password</InputLabel>
@@ -40,6 +64,10 @@ const Login = props => {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={e => {
+                setPassword(e.target.value);
+              }}
             />
           </FormControl>
           {/* TODO: Later -> Store "Remember me" val in cache
@@ -53,6 +81,7 @@ const Login = props => {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={authenticate}
           >
             Sign in
           </Button>
@@ -66,4 +95,4 @@ Login.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Login);
+export default withRouter(withStyles(styles)(Login));
