@@ -24,9 +24,7 @@ const Login = props => {
 
   const authenticate = async () => {
     try {
-      console.log(email, password);
-
-      // await firebase.login(email, password);
+      await firebase.login(email, password);
       // Update context API?
       // history.push()
     } catch (error) {
@@ -43,7 +41,12 @@ const Login = props => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form}>
+        <form
+          className={classes.form}
+          onSubmit={e => {
+            e.preventDefault();
+          }}
+        >
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
             <Input
