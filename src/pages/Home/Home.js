@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
@@ -8,20 +8,31 @@ import TabBar from "../../components/TabBar";
 import StudentList from "../../components/StudentList";
 import GroupList from "../../components/GroupList";
 
+import { getAllStudents, getAllGroups } from "../../services/api";
+
 // TODO: Method for student check in/out
 // TODO: Method for search
 // TODO: Method for filter
 
 const Resume = props => {
   const [tab, setTab] = useState(0);
+  const [students, setStudents] = useState([]);
+  const [groups, setGroups] = useState([]);
   const { classes } = props;
+
+  useEffect(async () => {
+    let allStudents = await getAllStudents();
+    let allGroups = await getAllGroups();
+    setStudents(allStudents);
+    setGroups(allGroups);
+  }, []);
 
   return (
     <div className={classes.background}>
       <Paper className={classes.paper}>
         <TabBar value={tab} onChange={setTab} tabs={["Students", "Groups"]} />
-        {tab === 0 && <StudentList />}
-        {tab === 1 && <GroupList />}
+        {tab === 0 && <StudentList students={students} />}
+        {tab === 1 && <GroupList groups={groups} />}
       </Paper>
     </div>
   );

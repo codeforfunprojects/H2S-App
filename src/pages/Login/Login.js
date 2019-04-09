@@ -27,8 +27,6 @@ const Login = props => {
   const authenticate = async () => {
     try {
       const { user } = await firebase.login(email, password);
-      console.log(user);
-
       // Update context API
       auth.setUser(user);
       history.push({ pathname: "/" });

@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core";
 import CheckInButton from "../CheckInButton/CheckInButton";
 
+// FIXME: Add loading spinner for when array === []
 const StudentList = props => {
   const { classes, students, checkInToggle, history } = props;
   const studentLI = students.map((student, index) => {
