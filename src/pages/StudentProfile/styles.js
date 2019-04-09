@@ -14,7 +14,6 @@ const styles = theme => ({
   baseGrid: {
     maxWidth: 1100
   },
-  header: {},
   avatarGrid: {
     display: "flex",
     alignItems: "center",

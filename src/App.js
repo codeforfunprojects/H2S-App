@@ -5,13 +5,14 @@ import withRoot from "./withRoot";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import StudentProfile from "./pages/StudentProfile";
+import GroupProfile from "./pages/GroupProfile";
 import "typeface-roboto";
 import { UserContext } from "./services/UserContext";
 
 const App = () => {
   const [user, setUser] = useState({});
   const state = { user, setUser };
-  // TODO: Save user info in cache
+  // TODO: Save user data in cache
   const emptyUser =
     Object.entries(user).length === 0 && user.constructor === Object;
 
@@ -29,6 +30,11 @@ const App = () => {
           isAuthenticated={!emptyUser}
           path="/student/:user"
           component={StudentProfile}
+        />
+        <PrivateRoute
+          isAuthenticated={!emptyUser}
+          path="/group/:group"
+          component={GroupProfile}
         />
       </Router>
     </UserContext.Provider>

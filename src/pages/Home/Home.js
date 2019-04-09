@@ -6,6 +6,7 @@ import { Paper } from "@material-ui/core";
 import TabBar from "../../components/TabBar";
 // import CoverImage from "../../components/CoverImage";
 import StudentList from "../../components/StudentList";
+import GroupList from "../../components/GroupList";
 
 // TODO: Method for student check in/out
 // TODO: Method for search
@@ -17,10 +18,10 @@ const Resume = props => {
 
   return (
     <div className={classes.background}>
-      {/* <CoverImage /> */}
       <Paper className={classes.paper}>
         <TabBar value={tab} onChange={setTab} tabs={["Students", "Groups"]} />
         {tab === 0 && <StudentList />}
+        {tab === 1 && <GroupList />}
       </Paper>
     </div>
   );

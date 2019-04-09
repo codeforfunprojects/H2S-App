@@ -24,8 +24,6 @@ const Login = props => {
   const [password, setPassword] = useState("");
   const auth = useContext(UserContext);
 
-  console.log(auth);
-
   const authenticate = async () => {
     try {
       const { user } = await firebase.login(email, password);

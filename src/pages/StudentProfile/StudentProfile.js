@@ -1,6 +1,6 @@
 // StudentProfile component
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
@@ -18,7 +18,7 @@ import CheckInButton from "../../components/CheckInButton/CheckInButton";
 
 const StudentProfile = props => {
   const { classes, match } = props;
-  //   console.log(match.params.user);
+  console.log(match.params.user);
   //   const [student, setStudent] = useState({});
   //   useEffect(async () => {
   //     const result = await axios(`URLtoAPI.com/${match.params.user}`);
@@ -104,7 +104,10 @@ const StudentProfile = props => {
           <Paper className={classes.paper}>
             <Typography variant="h6">Badges</Typography>
             <hr />
-            {/* LOW TODO: Badges Content */}
+            {/* LOW TODO: Badges Content
+					TODO: Could add skills/achievments card
+
+			*/}
           </Paper>
         </Grid>
       </Grid>
