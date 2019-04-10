@@ -14,32 +14,33 @@ import { getAllStudents, getAllGroups } from "../../services/api";
 // TODO: Method for search
 // TODO: Method for filter
 
-const Resume = props => {
+const Home = props => {
   const [tab, setTab] = useState(0);
   const [students, setStudents] = useState([]);
   const [groups, setGroups] = useState([]);
   const { classes } = props;
 
-  useEffect(async () => {
-    let allStudents = await getAllStudents();
-    let allGroups = await getAllGroups();
-    setStudents(allStudents);
-    setGroups(allGroups);
+  useEffect(() => {
+    async function fetchStudentsGroups(params) {
+      let allStudents = await getAllStudents();
+      let allGroups = await getAllGroups();
+      setStudents(allStudents);
+      setGroups(allGroups);
+    }
+    fetchStudentsGroups();
   }, []);
 
   return (
-    <div className={classes.background}>
-      <Paper className={classes.paper}>
-        <TabBar value={tab} onChange={setTab} tabs={["Students", "Groups"]} />
-        {tab === 0 && <StudentList students={students} />}
-        {tab === 1 && <GroupList groups={groups} />}
-      </Paper>
-    </div>
+    <Paper className={classes.paper}>
+      <TabBar value={tab} onChange={setTab} tabs={["Students", "Groups"]} />
+      {tab === 0 && <StudentList students={students} />}
+      {tab === 1 && <GroupList groups={groups} />}
+    </Paper>
   );
 };
 
-Resume.propTypes = {
+Home.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Resume);
+export default withStyles(styles)(Home);

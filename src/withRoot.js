@@ -29,6 +29,8 @@ const theme = createMuiTheme({
 });
 
 function withRoot(Component) {
+  console.log(theme.palette.red.dark);
+
   function WithRoot(props) {
     // MuiThemeProvider makes the theme available down the React tree
     // thanks to React context.
