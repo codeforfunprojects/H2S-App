@@ -1,4 +1,3 @@
-import dotenv from "dotenv";
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/firebase-firestore";
@@ -19,7 +18,7 @@ class Firebase {
     this.db = app.firestore();
   }
 
-  login(email, password) {
+  async login(email, password) {
     return this.auth.signInWithEmailAndPassword(email, password);
   }
 

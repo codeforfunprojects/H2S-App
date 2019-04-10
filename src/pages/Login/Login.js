@@ -1,9 +1,10 @@
 // Login component
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
+import { UserContext } from "../../services/UserContext";
 import firebase from "../../services/firebase";
 import {
   Paper,
@@ -21,14 +22,14 @@ const Login = props => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const auth = useContext(UserContext);
 
   const authenticate = async () => {
     try {
-      console.log(email, password);
-
-      // await firebase.login(email, password);
-      // Update context API?
-      // history.push()
+      const { user } = await firebase.login(email, password);
+      // Update context API
+      auth.setUser(user);
+      history.push({ pathname: "/" });
     } catch (error) {
       alert(error.message);
     }
@@ -43,7 +44,12 @@ const Login = props => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form}>
+        <form
+          className={classes.form}
+          onSubmit={e => {
+            e.preventDefault();
+          }}
+        >
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
             <Input
@@ -70,11 +76,6 @@ const Login = props => {
               }}
             />
           </FormControl>
-          {/* TODO: Later -> Store "Remember me" val in cache
-		  <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
           <Button
             type="submit"
             fullWidth

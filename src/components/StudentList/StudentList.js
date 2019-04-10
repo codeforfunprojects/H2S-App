@@ -16,21 +16,22 @@ import {
 } from "@material-ui/core";
 import CheckInButton from "../CheckInButton/CheckInButton";
 
+// FIXME: Add loading spinner for when array === []
 const StudentList = props => {
   const { classes, students, checkInToggle, history } = props;
-  const studentLI = students.map((item, index) => {
+  const studentLI = students.map((student, index) => {
     return (
       <ListItem
         onClick={() => {
-          history.push({ pathname: `student/${item.login}` });
+          history.push(`/student/${student.login}`);
         }}
         button
-        key={item.login}
+        key={student.login}
       >
         <ListItemAvatar>
-          <Avatar alt={item.displayname} src={item.image_url} />
+          <Avatar alt={student.displayname} src={student.image_url} />
         </ListItemAvatar>
-        <ListItemText primary={item.displayname} secondary={item.login} />
+        <ListItemText primary={student.displayname} secondary={student.login} />
         <ListItemSecondaryAction>
           <Grid container>
             <Grid item xs={6} className={classes.evalGrid}>
@@ -39,14 +40,14 @@ const StudentList = props => {
                 color="primary"
                 className={classes.evalButton}
                 onClick={() => {
-                  console.log("Add Evaluation");
+                  history.push(`/eval/${student.login}`);
                 }}
               >
                 Add Eval
               </Button>
             </Grid>
             <Grid item xs={6} className={classes.checkInButton}>
-              <CheckInButton checkedIn={item.loggedIn} />
+              <CheckInButton checkedIn={student.loggedIn} />
             </Grid>
           </Grid>
         </ListItemSecondaryAction>
@@ -58,6 +59,7 @@ const StudentList = props => {
 
 StudentList.propTypes = {
   classes: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   students: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
@@ -71,7 +73,7 @@ StudentList.defaultProps = {
     }
   ],
   checkInToggle: name => {
-    console.log(`${name}`);
+    console.log(`Toggle checkin ${name}`);
   }
 };
 

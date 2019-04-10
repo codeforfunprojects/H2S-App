@@ -1,4 +1,4 @@
-// GroupProfile styles
+// App styles
 const styles = theme => ({
   background: {
     background:
@@ -10,22 +10,6 @@ const styles = theme => ({
     justifyContent: "center",
     padding: theme.spacing.unit * 2,
     paddingTop: theme.spacing.unit * 4
-  },
-  baseGrid: {
-    maxWidth: 1100
-  },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    height: "100%"
-  },
-  avatarGrid: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  avatar: {
-    height: 180,
-    width: 180
   }
 });
 
