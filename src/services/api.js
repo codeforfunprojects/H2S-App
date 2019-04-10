@@ -23,6 +23,7 @@ const checkIn = async (login, val) => {
   const response = await axios.patch(`http://localhost:3000/checkin/${login}`, {
     checkin_status: val
   });
+  console.log(login, response.data);
   return response.data;
 };
 

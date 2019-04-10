@@ -16,8 +16,6 @@ import {
 
 const GroupProfile = props => {
   const { classes, match } = props;
-  console.log(match.params.group);
-
   //   const [group, setGroup] = useState({});
   //   useEffect(async () => {
   //     const result = await axios(`URLtoAPI.com/${match.params.user}`);

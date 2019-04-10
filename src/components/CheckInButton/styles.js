@@ -2,7 +2,7 @@
 const styles = theme => ({
   checkInButton: {
     color: "white",
-    width: "100%"
+    width: "108px"
   },
   checkOutButton: {
     background: theme.palette.red.main,
@@ -10,7 +10,8 @@ const styles = theme => ({
     "&:hover": {
       background: theme.palette.red.dark
     },
-    width: "100%"
+    width: "108px",
+    padding: "6px 8px"
   }
 });
 

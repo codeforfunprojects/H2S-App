@@ -7,7 +7,7 @@ import TabBar from "../../components/TabBar";
 // import CoverImage from "../../components/CoverImage";
 import StudentList from "../../components/StudentList";
 import GroupList from "../../components/GroupList";
-import { getAllStudents, getAllGroups } from "../../services/api";
+import { getAllStudents, getAllGroups, checkIn } from "../../services/api";
 
 // TODO: Method for search
 // TODO: Method for filter
@@ -98,6 +98,22 @@ const Home = props => {
     }
   };
 
+  const toggleCheckin = login => {
+    let index = 0;
+    let student = students.find((element, idx) => {
+      index = idx;
+      return element.login === login;
+    });
+    if (typeof student.checkin_status === "undefined") {
+      student.checkin_status = false;
+    }
+    student.checkin_status = !student.checkin_status;
+    students[index] = student;
+    checkIn(login, student.checkin_status);
+    setStudents(students);
+    forceUpdate();
+  };
+
   return (
     <Paper className={classes.paper}>
       <TabBar
@@ -106,7 +122,9 @@ const Home = props => {
         tabs={["Students", "Groups"]}
         updateLists={updateSort}
       />
-      {tab === 0 && <StudentList students={students} />}
+      {tab === 0 && (
+        <StudentList toggleCheckin={toggleCheckin} check students={students} />
+      )}
       {tab === 1 && <GroupList groups={groups} />}
     </Paper>
   );

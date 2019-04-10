@@ -16,21 +16,29 @@ import {
   Button
 } from "@material-ui/core";
 import CheckInButton from "../../components/CheckInButton/CheckInButton";
-import { getStudent } from "../../services/api";
+import { getStudent, checkIn } from "../../services/api";
 
 const StudentProfile = props => {
   const { classes, match, history } = props;
-
   const [student, setStudent] = useState({});
+
   useEffect(() => {
     async function fetchProfile() {
       let profile = await getStudent(match.params.user);
-      console.log(profile);
-
       setStudent(profile);
     }
     fetchProfile();
   }, []);
+
+  const toggleCheckin = () => {
+    if (typeof student.checkin_status === "undefined") {
+      student.checkin_status = false;
+    }
+    let checkin_status = !student.checkin_status;
+    checkIn(student.login, checkin_status);
+    setStudent({ ...student, checkin_status });
+  };
+
   return (
     <Grid className={classes.baseGrid} container spacing={24}>
       <Grid item xs={12}>
@@ -57,7 +65,10 @@ const StudentProfile = props => {
                 </List>
               </Grid>
               <Grid item xs={12} md={2} className={classes.buttonGrid}>
-                <CheckInButton checkedIn={true} />
+                <CheckInButton
+                  checkedIn={student.checkin_status}
+                  toggle={toggleCheckin}
+                />
                 <Button
                   variant="contained"
                   color="primary"
