@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -18,7 +18,17 @@ import styles from "./styles";
 
 // TODO: Filter and search need to be setup
 const TabBar = props => {
-  const { tabs, value, onChange, classes } = props;
+  const { tabs, value, onChange, updateLists, classes } = props;
+  const [sortTab, setSortTab] = useState("abc");
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    updateLists("sort", sortTab);
+  }, [sortTab]);
+
+  useEffect(() => {
+    updateLists("search", search);
+  }, [search]);
 
   const labels = tabs.map((label, index) => {
     return <Tab label={label} key={index} />;
@@ -28,8 +38,6 @@ const TabBar = props => {
       <Tabs
         value={value}
         onChange={(e, val) => {
-          console.log(val);
-
           onChange(val);
         }}
         indicatorColor="primary"
@@ -46,6 +54,10 @@ const TabBar = props => {
           </div>
           <InputBase
             placeholder="Search…"
+            value={search}
+            onChange={e => {
+              setSearch(e.target.value);
+            }}
             classes={{
               root: classes.inputRoot,
               input: classes.inputInput
@@ -54,24 +66,24 @@ const TabBar = props => {
         </div>
         <FormControl className={classes.formControl}>
           <InputLabel shrink htmlFor="filter-label-placeholder">
-            Filter
+            Sort
           </InputLabel>
           <Select
-            value={""}
-            onChange={params => {
-              console.log(params);
+            value={sortTab}
+            onChange={e => {
+              setSortTab(e.target.value);
             }}
             input={<Input name="filter" id="filter-label-placeholder" />}
             displayEmpty
             name="filter"
             className={classes.selectEmpty}
           >
-            <MenuItem value="">
-              <em>None</em>
+            <MenuItem value="abc">
+              <em>ABC</em>
             </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value="rabc">
+              Reverse <em>ABC</em>
+            </MenuItem>
           </Select>
         </FormControl>
       </Toolbar>
