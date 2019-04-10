@@ -29,7 +29,6 @@ const GroupProfile = props => {
         <Grid item xs={12}>
           {/* Student name and level */}
           <Paper className={classes.paper}>
-            {/* TODO: Set grid to column for mobile/sm screens */}
             <Grid container spacing={24}>
               <Grid item sm={12} md={3} className={classes.avatarGrid}>
                 <Avatar className={classes.avatar} />

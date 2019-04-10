@@ -9,10 +9,12 @@ import GroupProfile from "./pages/GroupProfile";
 import "typeface-roboto";
 import { UserContext } from "./services/UserContext";
 
+// Bonus TODOs
+// TODO: Mobile styling
+// TODO: Save user login data in cache
 const App = () => {
   const [user, setUser] = useState({});
   const state = { user, setUser };
-  // TODO: Save user data in cache
   const emptyUser =
     Object.entries(user).length === 0 && user.constructor === Object;
 

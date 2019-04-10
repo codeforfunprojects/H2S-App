@@ -59,8 +59,8 @@ const StudentList = props => {
 
 StudentList.propTypes = {
   classes: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   students: PropTypes.arrayOf(PropTypes.object).isRequired
-  // TODO: Add 'history' proptype
 };
 
 StudentList.defaultProps = {
@@ -73,7 +73,7 @@ StudentList.defaultProps = {
     }
   ],
   checkInToggle: name => {
-    console.log(`${name}`);
+    console.log(`Toggle checkin ${name}`);
   }
 };
 

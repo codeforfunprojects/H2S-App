@@ -35,8 +35,8 @@ const GroupList = props => {
 
 GroupList.propTypes = {
   classes: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   groups: PropTypes.arrayOf(PropTypes.object).isRequired
-  // TODO: Add 'history' proptype
 };
 
 GroupList.defaultProps = {

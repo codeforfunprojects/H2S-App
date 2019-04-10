@@ -29,7 +29,7 @@ const StudentProfile = props => {
         <Grid item xs={12}>
           {/* Student name and level */}
           <Paper className={classes.paper}>
-            {/* TODO: Set grid to column for mobile/sm screens */}
+            \{" "}
             <Grid container spacing={24}>
               <Grid item sm={12} md={3} className={classes.avatarGrid}>
                 <Avatar className={classes.avatar} />
@@ -104,10 +104,7 @@ const StudentProfile = props => {
           <Paper className={classes.paper}>
             <Typography variant="h6">Badges</Typography>
             <hr />
-            {/* LOW TODO: Badges Content
-					TODO: Could add skills/achievments card
-
-			*/}
+            {/* LOW TODO: Badges/Skills/Achievments Content */}
           </Paper>
         </Grid>
       </Grid>

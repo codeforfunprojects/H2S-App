@@ -76,11 +76,6 @@ const Login = props => {
               }}
             />
           </FormControl>
-          {/* TODO: Later -> Store "Remember me" val in cache
-		  <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
           <Button
             type="submit"
             fullWidth

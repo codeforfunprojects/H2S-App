@@ -17,7 +17,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import styles from "./styles";
 
 // TODO: Filter and search need to be setup
-// TODO: Tabs are not wired in Home
 const TabBar = props => {
   const { tabs, value, onChange, classes } = props;
 
