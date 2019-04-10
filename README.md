@@ -2,7 +2,9 @@
 
 ## Description
 
-    This app will help automate and standardize tasks regularly performed by Hack High School administrators and mentors. This App will handle CSV uploads to register students. and will connect to intra’s API
+    This app will help automate and standardize tasks regularly performed by Hack High School
+    administrators and mentors. This App will handle CSV uploads to register students. and 
+    will connect to intra’s API
 
 ## Features
 
