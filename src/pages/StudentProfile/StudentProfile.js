@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
+import { withRouter } from "react-router-dom";
 import {
   Grid,
   Paper,
@@ -18,7 +19,7 @@ import CheckInButton from "../../components/CheckInButton/CheckInButton";
 import { getStudent } from "../../services/api";
 
 const StudentProfile = props => {
-  const { classes, match } = props;
+  const { classes, match, history } = props;
 
   const [student, setStudent] = useState({});
   useEffect(() => {
@@ -62,7 +63,7 @@ const StudentProfile = props => {
                   color="primary"
                   className={classes.evalButton}
                   onClick={() => {
-                    console.log("Add Evaluation");
+                    history.push(`/eval/${student.login}`);
                   }}
                 >
                   Add Eval
@@ -118,4 +119,4 @@ StudentProfile.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(StudentProfile);
+export default withRouter(withStyles(styles)(StudentProfile));

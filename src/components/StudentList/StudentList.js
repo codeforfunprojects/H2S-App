@@ -40,7 +40,7 @@ const StudentList = props => {
                 color="primary"
                 className={classes.evalButton}
                 onClick={() => {
-                  console.log("Add Evaluation");
+                  history.push(`/eval/${student.login}`);
                 }}
               >
                 Add Eval
