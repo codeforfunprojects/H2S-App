@@ -63,6 +63,9 @@ const Home = props => {
         forceUpdate();
       } else if (type === "search") {
         let studentSearch = reset.students.filter(item => {
+          if (typeof item.displayname === "undefined") {
+            return false;
+          }
           let name = item.displayname.toLowerCase();
           let val = value.toLowerCase();
           return name.includes(val);
