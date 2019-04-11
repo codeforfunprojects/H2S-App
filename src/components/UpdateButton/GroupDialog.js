@@ -52,7 +52,7 @@ const GroupDialog = props => {
             >
               {groupList.map((group, index) => {
                 return (
-                  <MenuItem key={group.code} value={group}>
+                  <MenuItem key={group.code} value={group.code}>
                     {group.name}
                   </MenuItem>
                 );

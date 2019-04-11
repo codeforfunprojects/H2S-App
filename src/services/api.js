@@ -41,12 +41,10 @@ const checkIn = async (login, val) => {
   return response.data;
 };
 
-const addStudentToGroup = async (login, group) => {
-  console.log(login, group);
-
+const addStudentToGroup = async (login, code) => {
   const response = await axios.patch(
     `https://h2s-sms-api.herokuapp.com/groups/students/${login}`,
-    { group }
+    { code }
   );
   return response.data;
 };
