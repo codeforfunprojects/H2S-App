@@ -19,7 +19,7 @@ class Firebase {
   }
 
   async login(email, password) {
-    return this.auth.signInWithEmailAndPassword(email, password);
+    return await this.auth.signInWithEmailAndPassword(email, password);
   }
 
   logout() {

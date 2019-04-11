@@ -15,7 +15,6 @@ import { UserContext } from "./services/UserContext";
 
 // Bonus TODOs
 // TODO: Mobile styling
-// TODO: Save user login data in cache
 const App = props => {
   const { classes } = props;
   const [user, setUser] = useState({});
