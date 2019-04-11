@@ -3,15 +3,16 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
-import { withRouter } from "react-router-dom";
 import { Button, Menu, MenuItem } from "@material-ui/core";
 import GoalDialog from "./GoalDialog";
+import EvalDialog from "./EvalDialog";
 import GroupDialog from "./GroupDialog";
 
 const UpdateButton = props => {
-  const { classes, history, student } = props;
+  const { classes, student } = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const [showGoal, setShowGoal] = useState(false);
+  const [showEval, setShowEval] = useState(false);
   const [showGroup, setShowGroup] = useState(false);
 
   return typeof student === "undefined" ? null : (
@@ -44,7 +45,8 @@ const UpdateButton = props => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            history.push(`/eval/${student.login}`);
+            setShowEval(true);
+            setAnchorEl(null);
           }}
         >
           Add Evaluation
@@ -65,6 +67,13 @@ const UpdateButton = props => {
         }}
         student={student}
       />
+      <EvalDialog
+        open={showEval}
+        handleClose={() => {
+          setShowEval(false);
+        }}
+        student={student}
+      />
       <GroupDialog
         open={showGroup}
         handleClose={() => {
@@ -81,4 +90,4 @@ UpdateButton.propTypes = {
   student: PropTypes.object.isRequired
 };
 
-export default withRouter(withStyles(styles)(UpdateButton));
+export default withStyles(styles)(UpdateButton);

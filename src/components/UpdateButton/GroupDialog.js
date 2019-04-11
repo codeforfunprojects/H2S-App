@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles";
-import * as moment from "moment";
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import {
@@ -18,8 +17,9 @@ import {
   Select,
   MenuItem
 } from "@material-ui/core";
+import { addStudentToGroup } from "../../services/api";
 
-const UpdateButton = props => {
+const GroupDialog = props => {
   const { classes, student, open, handleClose } = props;
   const [group, setGroup] = useState("");
 
@@ -37,7 +37,7 @@ const UpdateButton = props => {
           }}
         >
           <FormControl margin="normal" required fullWidth>
-            <InputLabel>Goal</InputLabel>
+            <InputLabel>Group</InputLabel>
             <Select
               value={group}
               onChange={e => {
@@ -64,7 +64,7 @@ const UpdateButton = props => {
           </Button>
           <Button
             onClick={() => {
-              console.log(`New group: ${group}`);
+              addStudentToGroup(student.login, group);
               handleClose();
             }}
             color="primary"
@@ -77,12 +77,12 @@ const UpdateButton = props => {
   );
 };
 
-UpdateButton.propTypes = {
+GroupDialog.propTypes = {
   classes: PropTypes.object.isRequired,
   student: PropTypes.object.isRequired
 };
 
-export default withRouter(withStyles(styles)(UpdateButton));
+export default withRouter(withStyles(styles)(GroupDialog));
 
 const groupList = [
   {

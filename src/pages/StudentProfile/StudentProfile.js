@@ -12,8 +12,7 @@ import {
   List,
   ListItem,
   Typography,
-  LinearProgress,
-  Button
+  LinearProgress
 } from "@material-ui/core";
 import CheckInButton from "../../components/CheckInButton";
 import UpdateButton from "../../components/UpdateButton";
@@ -21,7 +20,7 @@ import { getStudent, checkIn } from "../../services/api";
 import LoadingPage from "../../components/LoadingPage";
 
 const StudentProfile = props => {
-  const { classes, match, history } = props;
+  const { classes, match } = props;
   const [student, setStudent] = useState(null);
 
   useEffect(() => {

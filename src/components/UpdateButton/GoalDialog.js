@@ -16,8 +16,9 @@ import {
   InputLabel,
   Input
 } from "@material-ui/core";
+import { addGoal } from "../../services/api";
 
-const UpdateButton = props => {
+const GoalDialog = props => {
   const { classes, student, open, handleClose } = props;
   const regex = /(\s)/gi;
   const today = moment()
@@ -59,7 +60,7 @@ const UpdateButton = props => {
           </Button>
           <Button
             onClick={() => {
-              console.log(`New goal: ${goal}`);
+              addGoal(student.login, goal);
               handleClose();
             }}
             color="primary"
@@ -72,9 +73,9 @@ const UpdateButton = props => {
   );
 };
 
-UpdateButton.propTypes = {
+GoalDialog.propTypes = {
   classes: PropTypes.object.isRequired,
   student: PropTypes.object.isRequired
 };
 
-export default withRouter(withStyles(styles)(UpdateButton));
+export default withRouter(withStyles(styles)(GoalDialog));

@@ -1,25 +1,27 @@
-// Evaluation component
+// TODO: EvalDialog component
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles";
+import * as moment from "moment";
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import {
-  Paper,
-  Avatar,
-  Typography,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
   FormControl,
   Input,
-  Radio,
-  Button,
-  FormControlLabel
+  Typography,
+  FormControlLabel,
+  Radio
 } from "@material-ui/core";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { updateEvaluation } from "../../services/api";
 
-const Evaluation = props => {
-  const { classes, match, history } = props;
-
+const EvalDialog = props => {
+  const { classes, student, open, handleClose } = props;
+  const today = moment().format("L");
   const [progress, setProgress] = useState("");
   const [goalStatus, setGoalStatus] = useState(false);
   const [comments, setComments] = useState("");
@@ -29,20 +31,17 @@ const Evaluation = props => {
     if (!progress) {
       alert("Progess field is required");
     } else {
-      updateEvaluation(evaluation);
-      history.goBack();
+      updateEvaluation(student.login, evaluation);
+      handleClose();
     }
   };
 
   return (
-    <main className={classes.main}>
-      <Paper className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          {`Evaluation for ${match.params.user}`}
-        </Typography>
+    <Dialog open={open} onClose={handleClose}>
+      <DialogTitle>
+        {student.displayname} {today}
+      </DialogTitle>
+      <DialogContent>
         <form
           className={classes.form}
           onSubmit={e => {
@@ -111,24 +110,28 @@ const Evaluation = props => {
               }}
             />
           </FormControl>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={submitEval}
-          >
-            Submit Evaluation
-          </Button>
         </form>
-      </Paper>
-    </main>
+        <DialogActions>
+          <Button onClick={handleClose} color="default">
+            Cancel
+          </Button>
+          <Button
+            onClick={() => {
+              submitEval();
+            }}
+            color="primary"
+          >
+            Submit
+          </Button>
+        </DialogActions>
+      </DialogContent>
+    </Dialog>
   );
 };
 
-Evaluation.propTypes = {
-  classes: PropTypes.object.isRequired
+EvalDialog.propTypes = {
+  classes: PropTypes.object.isRequired,
+  student: PropTypes.object.isRequired
 };
 
-export default withRouter(withStyles(styles)(Evaluation));
+export default withRouter(withStyles(styles)(EvalDialog));

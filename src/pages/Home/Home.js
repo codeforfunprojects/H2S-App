@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useReducer } from "react";
-import PropTypes, { resetWarningCache } from "prop-types";
+import PropTypes from "prop-types";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
@@ -117,8 +117,6 @@ const Home = props => {
     setStudents(students);
     forceUpdate();
   };
-  console.log(reset.students);
-
   return (
     <Paper className={classes.paper}>
       <TabBar
