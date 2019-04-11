@@ -57,7 +57,7 @@ const UpdateButton = props => {
 
 UpdateButton.propTypes = {
   classes: PropTypes.object.isRequired,
-  login: PropTypes.string.isRequired
+  student: PropTypes.object.isRequired
 };
 
 export default withRouter(withStyles(styles)(UpdateButton));

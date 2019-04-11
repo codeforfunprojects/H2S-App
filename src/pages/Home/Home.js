@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useReducer } from "react";
-import PropTypes from "prop-types";
+import PropTypes, { resetWarningCache } from "prop-types";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
@@ -8,6 +8,7 @@ import TabBar from "../../components/TabBar";
 import StudentList from "../../components/StudentList";
 import GroupList from "../../components/GroupList";
 import { getAllStudents, getAllGroups, checkIn } from "../../services/api";
+import LoadingPage from "../../components/LoadingPage";
 
 // TODO: Method for search
 // TODO: Method for filter
@@ -116,6 +117,7 @@ const Home = props => {
     setStudents(students);
     forceUpdate();
   };
+  console.log(reset.students);
 
   return (
     <Paper className={classes.paper}>
@@ -125,10 +127,21 @@ const Home = props => {
         tabs={["Students", "Groups"]}
         updateLists={updateSort}
       />
-      {tab === 0 && (
-        <StudentList toggleCheckin={toggleCheckin} check students={students} />
+      {tab === 0 &&
+        (reset.students.length === 0 ? (
+          <LoadingPage />
+        ) : (
+          <StudentList
+            toggleCheckin={toggleCheckin}
+            check
+            students={students}
+          />
+        ))}
+      {tab === 1 && reset.groups.length === 0 ? (
+        <LoadingPage />
+      ) : (
+        <GroupList groups={groups} />
       )}
-      {tab === 1 && <GroupList groups={groups} />}
     </Paper>
   );
 };

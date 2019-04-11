@@ -18,10 +18,11 @@ import {
 import CheckInButton from "../../components/CheckInButton";
 import UpdateButton from "../../components/UpdateButton";
 import { getStudent, checkIn } from "../../services/api";
+import LoadingPage from "../../components/LoadingPage";
 
 const StudentProfile = props => {
   const { classes, match, history } = props;
-  const [student, setStudent] = useState({});
+  const [student, setStudent] = useState(null);
 
   useEffect(() => {
     async function fetchProfile() {
@@ -40,7 +41,7 @@ const StudentProfile = props => {
     setStudent({ ...student, checkin_status });
   };
 
-  return (
+  return student ? (
     <Grid className={classes.baseGrid} container spacing={24}>
       <Grid item xs={12}>
         {/* Student name and level */}
@@ -115,6 +116,8 @@ const StudentProfile = props => {
         </Paper>
       </Grid>
     </Grid>
+  ) : (
+    <LoadingPage />
   );
 };
 
