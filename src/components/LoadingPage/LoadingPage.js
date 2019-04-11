@@ -2,12 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-const styles = theme => ({
-  progress: {
-    margin: theme.spacing.unit * 2,
-  },
-});
+import styles from './styles.js';
 
 class CircularDeterminate extends React.Component {
   state = {
@@ -15,7 +10,7 @@ class CircularDeterminate extends React.Component {
   };
 
   componentDidMount() {
-    this.timer = setInterval(this.progress, 20);
+    this.timer = setInterval(this.progress, 19);
   }
 
   componentWillUnmount() {
@@ -30,19 +25,16 @@ class CircularDeterminate extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+        <>
+      <div className={classes.load}>
         <CircularProgress
           className={classes.progress}
           variant="determinate"
           value={this.state.completed}
-        />
-        <CircularProgress
-          className={classes.progress}
-          variant="determinate"
-          value={this.state.completed}
-          color="secondary"
+          size={60}
         />
       </div>
+      </>
     );
   }
 }
