@@ -42,8 +42,10 @@ const checkIn = async (login, val) => {
 };
 
 const addStudentToGroup = async (login, group) => {
+  console.log(login, group);
+
   const response = await axios.patch(
-    `https://h2s-sms-api.herokuapp.com/groups/students/${login}`,
+    `http://localhost:3000/groups/students/${login}`,
     { group }
   );
   return response.data;

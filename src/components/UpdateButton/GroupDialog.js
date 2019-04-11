@@ -41,6 +41,8 @@ const GroupDialog = props => {
             <Select
               value={group}
               onChange={e => {
+                console.log(e.target);
+
                 setGroup(e.target.value);
               }}
               input={<Input name="group" id="group-label-placeholder" />}
@@ -48,9 +50,9 @@ const GroupDialog = props => {
               name="group"
               className={classes.selectEmpty}
             >
-              {groupList.map(group => {
+              {groupList.map((group, index) => {
                 return (
-                  <MenuItem key={group.code} value={group.code}>
+                  <MenuItem key={group.code} value={group}>
                     {group.name}
                   </MenuItem>
                 );
