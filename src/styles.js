@@ -8,8 +8,7 @@ const styles = theme => ({
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center",
-    padding: theme.spacing.unit * 2,
-    paddingTop: theme.spacing.unit * 4
+    padding: theme.spacing.unit * 2
   }
 });
 

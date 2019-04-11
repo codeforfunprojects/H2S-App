@@ -18,8 +18,9 @@ import CheckInButton from "../CheckInButton/CheckInButton";
 
 // FIXME: Add loading spinner for when array === []
 const StudentList = props => {
-  const { classes, students, checkInToggle, history } = props;
-  const studentLI = students.map((student, index) => {
+  const { classes, students, toggleCheckin, history } = props;
+
+  const studentLI = students.map(student => {
     return (
       <ListItem
         onClick={() => {
@@ -47,7 +48,12 @@ const StudentList = props => {
               </Button>
             </Grid>
             <Grid item xs={6} className={classes.checkInButton}>
-              <CheckInButton checkedIn={student.loggedIn} />
+              <CheckInButton
+                checkedIn={student.checkin_status}
+                toggle={() => {
+                  toggleCheckin(student.login);
+                }}
+              />
             </Grid>
           </Grid>
         </ListItemSecondaryAction>
@@ -72,7 +78,7 @@ StudentList.defaultProps = {
       loggedIn: false
     }
   ],
-  checkInToggle: name => {
+  toggleCheckin: name => {
     console.log(`Toggle checkin ${name}`);
   }
 };

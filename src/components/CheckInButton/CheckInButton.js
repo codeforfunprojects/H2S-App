@@ -6,18 +6,18 @@ import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 
 const CheckInButton = props => {
-  const { classes, checkedIn } = props;
-  // TODO: Toggle Checkin
+  const { classes, checkedIn, toggle } = props;
+
   if (checkedIn) {
     return (
       <Button
         onClick={() => {
-          console.log("Check Out");
+          toggle();
         }}
         variant="contained"
         className={classes.checkOutButton}
       >
-        Check-Out
+        Check Out
       </Button>
     );
   } else {
@@ -27,10 +27,10 @@ const CheckInButton = props => {
         color="secondary"
         className={classes.checkInButton}
         onClick={() => {
-          console.log("Check In");
+          toggle();
         }}
       >
-        Check-In
+        Check In
       </Button>
     );
   }

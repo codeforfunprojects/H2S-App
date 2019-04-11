@@ -1,5 +1,5 @@
 // Login component
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
@@ -27,13 +27,22 @@ const Login = props => {
   const authenticate = async () => {
     try {
       const { user } = await firebase.login(email, password);
-      // Update context API
       auth.setUser(user);
-      history.push({ pathname: "/" });
+      localStorage.setItem("user", JSON.stringify(user));
+      history.push("/");
     } catch (error) {
       alert(error.message);
     }
   };
+
+  useEffect(() => {
+    let cacheUser = JSON.parse(localStorage.getItem("user"));
+    console.log(cacheUser);
+    if (typeof cacheUser !== "undefined") {
+      auth.setUser(cacheUser);
+      history.push("/");
+    }
+  }, []);
 
   return (
     <main className={classes.main}>
