@@ -3,18 +3,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
-import { withRouter } from "react-router";
+import { withRouter } from "react-router-dom";
 import {
   List,
   ListItem,
   ListItemAvatar,
   ListItemText,
   Avatar,
-  Button,
   ListItemSecondaryAction,
   Grid
 } from "@material-ui/core";
-import CheckInButton from "../CheckInButton/CheckInButton";
+import CheckInButton from "../CheckInButton";
+import UpdateButton from "../UpdateButton";
 
 // FIXME: Add loading spinner for when array === []
 const StudentList = props => {
@@ -36,16 +36,7 @@ const StudentList = props => {
         <ListItemSecondaryAction>
           <Grid container>
             <Grid item xs={6} className={classes.evalGrid}>
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.evalButton}
-                onClick={() => {
-                  history.push(`/eval/${student.login}`);
-                }}
-              >
-                Add Eval
-              </Button>
+              <UpdateButton student={student} />
             </Grid>
             <Grid item xs={6} className={classes.checkInButton}>
               <CheckInButton

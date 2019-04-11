@@ -15,7 +15,8 @@ import {
   LinearProgress,
   Button
 } from "@material-ui/core";
-import CheckInButton from "../../components/CheckInButton/CheckInButton";
+import CheckInButton from "../../components/CheckInButton";
+import UpdateButton from "../../components/UpdateButton";
 import { getStudent, checkIn } from "../../services/api";
 
 const StudentProfile = props => {
@@ -69,16 +70,7 @@ const StudentProfile = props => {
                   checkedIn={student.checkin_status}
                   toggle={toggleCheckin}
                 />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.evalButton}
-                  onClick={() => {
-                    history.push(`/eval/${student.login}`);
-                  }}
-                >
-                  Add Eval
-                </Button>
+                <UpdateButton student={student} />
               </Grid>
               <Grid item xs={12} className={classes.progressGrid}>
                 <LinearProgress
