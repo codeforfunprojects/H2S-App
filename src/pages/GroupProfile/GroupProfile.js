@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import StudentList from "../../components/StudentList";
+import LoadingPage from "../../components/LoadingPage";
 import {
   Grid,
   Paper,
@@ -17,7 +18,7 @@ import { getGroup } from "../../services/api";
 
 const GroupProfile = props => {
   const { classes, match } = props;
-  const [group, setGroup] = useState({});
+  const [group, setGroup] = useState(null);
 
   useEffect(() => {
     const fetchGroup = async () => {
@@ -28,7 +29,7 @@ const GroupProfile = props => {
   }, []);
   console.log(group);
 
-  return (
+  return group ? (
     <Grid className={classes.baseGrid} container spacing={24}>
       <Grid item xs={12}>
         {/* Student name and level */}
@@ -79,6 +80,8 @@ const GroupProfile = props => {
         </Paper>
       </Grid>
     </Grid>
+  ) : (
+    <LoadingPage />
   );
 };
 

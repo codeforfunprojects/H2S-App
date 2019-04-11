@@ -12,15 +12,16 @@ import {
   List,
   ListItem,
   Typography,
-  LinearProgress,
-  Button
+  LinearProgress
 } from "@material-ui/core";
-import CheckInButton from "../../components/CheckInButton/CheckInButton";
+import CheckInButton from "../../components/CheckInButton";
+import UpdateButton from "../../components/UpdateButton";
 import { getStudent, checkIn } from "../../services/api";
+import LoadingPage from "../../components/LoadingPage";
 
 const StudentProfile = props => {
-  const { classes, match, history } = props;
-  const [student, setStudent] = useState({});
+  const { classes, match } = props;
+  const [student, setStudent] = useState(null);
 
   useEffect(() => {
     async function fetchProfile() {
@@ -39,7 +40,7 @@ const StudentProfile = props => {
     setStudent({ ...student, checkin_status });
   };
 
-  return (
+  return student ? (
     <Grid className={classes.baseGrid} container spacing={24}>
       <Grid item xs={12}>
         {/* Student name and level */}
@@ -69,16 +70,7 @@ const StudentProfile = props => {
                   checkedIn={student.checkin_status}
                   toggle={toggleCheckin}
                 />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.evalButton}
-                  onClick={() => {
-                    history.push(`/eval/${student.login}`);
-                  }}
-                >
-                  Add Eval
-                </Button>
+                <UpdateButton student={student} />
               </Grid>
               <Grid item xs={12} className={classes.progressGrid}>
                 <LinearProgress
@@ -123,6 +115,8 @@ const StudentProfile = props => {
         </Paper>
       </Grid>
     </Grid>
+  ) : (
+    <LoadingPage />
   );
 };
 

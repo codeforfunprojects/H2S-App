@@ -15,8 +15,16 @@ const getStudent = async login => {
   return response.data;
 };
 
-const newEvaluation = async (evaluation, login) => {
+const addGoal = async (login, goal) => {
   const response = await axios.post(
+    `https://h2s-sms-api.herokuapp.com/evaluations/${login}`,
+    { evaluation: { goal } }
+  );
+  return response.data;
+};
+
+const updateEvaluation = async (login, evaluation) => {
+  const response = await axios.patch(
     `https://h2s-sms-api.herokuapp.com/evaluations/${login}`,
     { evaluation }
   );
@@ -33,11 +41,10 @@ const checkIn = async (login, val) => {
   return response.data;
 };
 
-const updateStudent = async (login, update) => {
-  const { displayname, group } = update;
+const addStudentToGroup = async (login, code) => {
   const response = await axios.patch(
-    `https://h2s-sms-api.herokuapp.com/students/${login}`,
-    { displayname, group }
+    `https://h2s-sms-api.herokuapp.com/groups/students/${login}`,
+    { code }
   );
   return response.data;
 };
@@ -68,9 +75,10 @@ export {
   getAllStudents,
   getAllGroups,
   getStudent,
-  updateStudent,
+  addStudentToGroup,
   getGroup,
   updateMentor,
-  newEvaluation,
+  addGoal,
+  updateEvaluation,
   checkIn
 };
