@@ -13,13 +13,20 @@ import {
   ListItem,
   Typography
 } from "@material-ui/core";
+import { getGroup } from "../../services/api";
 
 const GroupProfile = props => {
   const { classes, match } = props;
-  //   const [group, setGroup] = useState({});
-  //   useEffect(async () => {
-  //     const result = await axios(`URLtoAPI.com/${match.params.user}`);
-  //   }, []);
+  const [group, setGroup] = useState({});
+
+  useEffect(() => {
+    const fetchGroup = async () => {
+      let groupProfile = await getGroup(match.params.group);
+      setGroup(groupProfile);
+    };
+    fetchGroup();
+  }, []);
+  console.log(group);
 
   return (
     <Grid className={classes.baseGrid} container spacing={24}>
@@ -28,34 +35,19 @@ const GroupProfile = props => {
         <Paper className={classes.paper}>
           <Grid container spacing={24}>
             <Grid item sm={12} md={3} className={classes.avatarGrid}>
-              <Avatar className={classes.avatar} />
+              <Avatar className={classes.avatar} src={group.image_url} />
             </Grid>
             <Grid item sm={12} md={9}>
               <List>
                 <ListItem>
-                  <Typography variant="h4">Group Name</Typography>
+                  <Typography variant="h4">{group.name}</Typography>
                 </ListItem>
                 <ListItem>
                   <Typography variant="subtitle1">
-                    With Don Stolz
-                    {/* {group.mentor_name} */}
+                    Mentor: {group.mentor}
                   </Typography>
                 </ListItem>
               </List>
-              {/* TODO: Have ability to edit mentor as Admin
-				<Grid item xs={12} md={2} className={classes.buttonGrid}>
-                  <CheckInButton checkedIn={true} />
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    className={classes.evalButton}
-                    onClick={() => {
-                      console.log("Add Evaluation");
-                    }}
-                  >
-                    Edit Mentor
-                  </Button>
-                </Grid> */}
             </Grid>
           </Grid>
         </Paper>
@@ -64,9 +56,9 @@ const GroupProfile = props => {
         <Paper className={classes.paper}>
           <Typography variant="h6">Students</Typography>
           <hr />
-          {/* TODO: Needs to be exclusive group */}
+          {/* TODO: Needs to add to group */}
           {/* TODO: Needs to be sorted checked in/out */}
-          <StudentList />
+          <StudentList students={group.students} />
         </Paper>
       </Grid>
       <Grid item xs={6}>
@@ -74,15 +66,16 @@ const GroupProfile = props => {
         <Paper className={classes.paper}>
           <Typography variant="h6">Projects</Typography>
           <hr />
-          {/* TODO: Projects Content */}
-        </Paper>
-      </Grid>
-      <Grid item xs={6}>
-        {/* Recent Evaluations */}
-        <Paper className={classes.paper}>
-          <Typography variant="h6">Project List</Typography>
-          <hr />
-          {/* LOW TODO: Badges Content */}
+          <List>
+            {group.children &&
+              group.children.map(element => {
+                return (
+                  <ListItem button component="a" href={element.url}>
+                    <Typography variant="h6">{element.name}</Typography>
+                  </ListItem>
+                );
+              })}
+          </List>
         </Paper>
       </Grid>
     </Grid>

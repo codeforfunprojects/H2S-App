@@ -19,7 +19,7 @@ const GroupList = props => {
       <ListItem
         button
         onClick={() => {
-          history.push(`/group/${group.id}`);
+          history.push(`/group/${group.code}`);
         }}
         key={index}
       >
