@@ -5,11 +5,16 @@ import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import { Button, Menu, MenuItem } from "@material-ui/core";
+import GoalDialog from "./GoalDialog";
+import GroupDialog from "./GroupDialog";
 
 const UpdateButton = props => {
   const { classes, history, student } = props;
   const [anchorEl, setAnchorEl] = useState(null);
-  return (
+  const [showGoal, setShowGoal] = useState(false);
+  const [showGroup, setShowGroup] = useState(false);
+
+  return typeof student === "undefined" ? null : (
     <>
       <Button
         variant="contained"
@@ -31,7 +36,8 @@ const UpdateButton = props => {
       >
         <MenuItem
           onClick={() => {
-            console.log("Add Goal");
+            setShowGoal(true);
+            setAnchorEl(null);
           }}
         >
           Add Goal
@@ -45,12 +51,27 @@ const UpdateButton = props => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            console.log("Set Group");
+            setShowGroup(true);
+            setAnchorEl(null);
           }}
         >
           Set Group
         </MenuItem>
       </Menu>
+      <GoalDialog
+        open={showGoal}
+        handleClose={() => {
+          setShowGoal(false);
+        }}
+        student={student}
+      />
+      <GroupDialog
+        open={showGroup}
+        handleClose={() => {
+          setShowGroup(false);
+        }}
+        student={student}
+      />
     </>
   );
 };

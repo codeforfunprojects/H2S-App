@@ -1,0 +1,140 @@
+// GroupDialog component
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import styles from "./styles";
+import * as moment from "moment";
+import { withStyles } from "@material-ui/core/styles";
+import { withRouter } from "react-router-dom";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  Button,
+  FormControl,
+  InputLabel,
+  Input,
+  Select,
+  MenuItem
+} from "@material-ui/core";
+
+const UpdateButton = props => {
+  const { classes, student, open, handleClose } = props;
+  const [group, setGroup] = useState("");
+
+  return (
+    <Dialog open={open} onClose={handleClose}>
+      <DialogTitle>{student.displayname}</DialogTitle>
+      <DialogContent>
+        <DialogContentText>
+          What is {student.displayname}'s new group
+        </DialogContentText>
+        <form
+          className={classes.form}
+          onSubmit={e => {
+            e.preventDefault();
+          }}
+        >
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel>Goal</InputLabel>
+            <Select
+              value={group}
+              onChange={e => {
+                setGroup(e.target.value);
+              }}
+              input={<Input name="group" id="group-label-placeholder" />}
+              displayEmpty
+              name="group"
+              className={classes.selectEmpty}
+            >
+              {groupList.map(group => {
+                return (
+                  <MenuItem key={group.code} value={group.code}>
+                    {group.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        </form>
+        <DialogActions>
+          <Button onClick={handleClose} color="default">
+            Cancel
+          </Button>
+          <Button
+            onClick={() => {
+              console.log(`New group: ${group}`);
+              handleClose();
+            }}
+            color="primary"
+          >
+            Submit
+          </Button>
+        </DialogActions>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+UpdateButton.propTypes = {
+  classes: PropTypes.object.isRequired,
+  student: PropTypes.object.isRequired
+};
+
+export default withRouter(withStyles(styles)(UpdateButton));
+
+const groupList = [
+  {
+    code: "OOP",
+    name: "Object Oriented Python Programming"
+  },
+  {
+    code: "WEBDEV",
+    name: "Web Development"
+  },
+  {
+    code: "APCSP",
+    name: "APCSP"
+  },
+  {
+    code: "GAME2",
+    name: "Game Design 2"
+  },
+  {
+    code: "ALGPUZ",
+    name: "Algorithmic Puzzles"
+  },
+  {
+    code: "HACKADV",
+    name: "Hack Your Own Adventure"
+  },
+  {
+    code: "PYTHON",
+    name: "Parseltongue Piscine"
+  },
+  {
+    code: "NODE",
+    name: "API's with Node.js"
+  },
+  {
+    code: "PYGAME",
+    name: "Pygame"
+  },
+  {
+    code: "GAME1",
+    name: "Game Design 1"
+  },
+  {
+    code: "MCHLRN",
+    name: "Machine Learning using Python"
+  },
+  {
+    code: "POLCALC",
+    name: "Reverse Polish Notation Calculator"
+  },
+  {
+    code: "DATAMIN",
+    name: "Data Mining the 49ers"
+  }
+];
