@@ -19,8 +19,8 @@ const App = props => {
   const { classes } = props;
   const [user, setUser] = useState({});
   const state = { user, setUser };
-  const emptyUser =
-    Object.entries(user).length === 0 && user.constructor === Object;
+  let auth;
+  auth = Object.entries(user).length === 0 && user.constructor === Object;
 
   return (
     <UserContext.Provider value={state}>
@@ -28,23 +28,23 @@ const App = props => {
         <Router>
           <Route path="/login" component={Login} />
           <PrivateRoute
-            isAuthenticated={!emptyUser}
+            isAuthenticated={!auth}
             path="/"
             exact
             component={Home}
           />
           <PrivateRoute
-            isAuthenticated={!emptyUser}
+            isAuthenticated={!auth}
             path="/student/:user"
             component={StudentProfile}
           />
           <PrivateRoute
-            isAuthenticated={!emptyUser}
+            isAuthenticated={!auth}
             path="/group/:group"
             component={GroupProfile}
           />
           <PrivateRoute
-            isAuthenticated={!emptyUser}
+            isAuthenticated={!auth}
             path="/eval/:user"
             component={Evaluation}
           />
