@@ -31,6 +31,7 @@ const Home = props => {
     students: [],
     groups: []
   });
+  // eslint-disable-next-line
   const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
   const { classes } = props;
 

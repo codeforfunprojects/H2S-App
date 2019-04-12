@@ -20,7 +20,12 @@ const styles = theme => ({
   },
   paper: {
     padding: theme.spacing.unit * 2,
-    height: "100%"
+    height: "100%",
+    maxHeight: 320
+  },
+  list: {
+    maxHeight: 240,
+    overflow: "auto"
   },
   buttonGrid: {
     padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px 0px 0px`

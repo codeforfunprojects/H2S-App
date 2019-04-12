@@ -59,7 +59,7 @@ const GroupProfile = props => {
           <hr />
           {/* TODO: Needs to add to group */}
           {/* TODO: Needs to be sorted checked in/out */}
-          <StudentList students={group.students} />
+          <StudentList profile={true} students={group.students} />
         </Paper>
       </Grid>
       <Grid item xs={6}>
@@ -67,7 +67,7 @@ const GroupProfile = props => {
         <Paper className={classes.paper}>
           <Typography variant="h6">Projects</Typography>
           <hr />
-          <List>
+          <List className={classes.list}>
             {group.children &&
               group.children.map(element => {
                 return (

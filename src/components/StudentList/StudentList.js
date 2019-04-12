@@ -18,7 +18,13 @@ import UpdateButton from "../UpdateButton";
 
 // FIXME: Add loading spinner for when array === []
 const StudentList = props => {
-  const { classes, students, toggleCheckin, history } = props;
+  const { classes, students, toggleCheckin, history, profile } = props;
+  let listStyle = null;
+  if (profile) {
+    listStyle = classes.scrollCard;
+  }
+  console.log(listStyle);
+
   const studentLI = students.map(student => {
     return (
       <ListItem
@@ -50,13 +56,14 @@ const StudentList = props => {
       </ListItem>
     );
   });
-  return <List className={classes.rootList}>{studentLI}</List>;
+  return <List className={listStyle}>{studentLI}</List>;
 };
 
 StudentList.propTypes = {
   classes: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
-  students: PropTypes.arrayOf(PropTypes.object).isRequired
+  students: PropTypes.arrayOf(PropTypes.object).isRequired,
+  profile: PropTypes.bool
 };
 
 StudentList.defaultProps = {
@@ -68,6 +75,7 @@ StudentList.defaultProps = {
       loggedIn: false
     }
   ],
+  profile: false,
   toggleCheckin: name => {
     console.log(`Toggle checkin ${name}`);
   }

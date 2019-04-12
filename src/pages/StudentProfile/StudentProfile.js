@@ -23,7 +23,7 @@ import { getStudent, checkIn } from "../../services/api";
 import LoadingPage from "../../components/LoadingPage";
 
 const StudentProfile = props => {
-  const { classes, match } = props;
+  const { classes, match, history } = props;
   const [student, setStudent] = useState(null);
 
   useEffect(() => {
@@ -67,7 +67,14 @@ const StudentProfile = props => {
                   <ListItem>
                     <Typography variant="h4">{student.displayname}</Typography>
                   </ListItem>
-                  <ListItem>
+                  <ListItem
+                    button
+                    onClick={() => {
+                      if (student.hasOwnProperty("group")) {
+                        history.push(`/group/${student.group.code}`);
+                      }
+                    }}
+                  >
                     {student.hasOwnProperty("group") ? (
                       <>
                         <Avatar src={student.group.image_url} />
@@ -128,7 +135,7 @@ const StudentProfile = props => {
         <Paper className={classes.paper}>
           <Typography variant="h6">Projects</Typography>
           <hr />
-          <List>
+          <List className={classes.list}>
             {student.projects_users.map(project => {
               if (project.status === "parent") {
                 return null;
