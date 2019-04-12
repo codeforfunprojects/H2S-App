@@ -6,9 +6,16 @@ const styles = theme => ({
     backgroundSize: "cover",
     minHeight: "100vh",
     display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "center",
-    padding: theme.spacing.unit * 2
+    alignItems: "center",
+    justifyContent: "flex-start",
+    padding: theme.spacing.unit * 2,
+    flexDirection: "column"
+  },
+  logout: {
+    textDecoration: "none",
+    color: "#78909c",
+    marginTop: 16,
+    fontFamily: "Roboto"
   }
 });
 

@@ -48,6 +48,18 @@ const App = props => {
             component={Evaluation}
           />
         </Router>
+        {user ? (
+          <a
+            className={classes.logout}
+            onClick={() => {
+              localStorage.removeItem("user");
+              setUser(null);
+            }}
+            href="/login"
+          >
+            Logout
+          </a>
+        ) : null}
       </div>
     </UserContext.Provider>
   );
