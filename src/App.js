@@ -19,8 +19,8 @@ const App = props => {
   const { classes } = props;
   const [user, setUser] = useState({});
   const state = { user, setUser };
-  const emptyUser = false;
-  // Object.entries(user).length === 0 && user.constructor === Object;
+  const emptyUser =
+    Object.entries(user).length === 0 && user.constructor === Object;
 
   return (
     <UserContext.Provider value={state}>
