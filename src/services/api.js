@@ -3,10 +3,7 @@ import axios from "axios";
 
 const authAxios = axios.create({
   headers: {
-    Authorization:
-      !process.env.NODE_ENV || process.env.NODE_ENV === "development"
-        ? process.env.REACT_APP_NODE_API_KEY
-        : JSON.parse(process.env.REACT_APP_NODE_API_KEY)
+    Authorization: process.env.REACT_APP_NODE_API_KEY
   }
 });
 
