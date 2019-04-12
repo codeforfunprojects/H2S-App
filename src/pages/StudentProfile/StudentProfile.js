@@ -22,11 +22,27 @@ import LoadingPage from "../../components/LoadingPage";
 const StudentProfile = props => {
   const { classes, match } = props;
   const [student, setStudent] = useState(null);
+  let level, barValue;
+
+  if (student !== null) {
+    let cursus = student.cursus_users.find(element => {
+      return element.cursus_id === 17;
+    });
+    level = cursus.level;
+    barValue = level - Math.floor(level);
+  }
 
   useEffect(() => {
     async function fetchProfile() {
       let profile = await getStudent(match.params.user);
+      let cursus = profile.cursus_users.find(element => {
+        return element.cursus_id === 17;
+      });
+      level = cursus.level;
+      barValue = (level - Math.floor(level)) * 100;
+      profile = { ...profile, level, barValue };
       setStudent(profile);
+      console.log(profile);
     }
     fetchProfile();
   }, []);
@@ -75,7 +91,7 @@ const StudentProfile = props => {
               <Grid item xs={12} className={classes.progressGrid}>
                 <LinearProgress
                   variant="determinate"
-                  value={50}
+                  value={student.barValue}
                   className={classes.levelProgress}
                 />
               </Grid>
