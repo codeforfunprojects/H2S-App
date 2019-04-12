@@ -3,10 +3,7 @@ import "firebase/auth";
 import "firebase/firebase-firestore";
 
 const config = {
-  apiKey:
-    process.env.NODE_ENV || process.env.NODE_ENV === "development"
-      ? process.env.REACT_APP_FIREBASE_API_KEY
-      : JSON.parse(process.env.REACT_APP_FIREBASE_API_KEY),
+  apiKey: "AIzaSyBgvGp2CVWyi86OKaRqX8p0CnBqPAIXUmQ",
   authDomain: "h2s-student-management.firebaseapp.com",
   databaseURL: "https://h2s-student-management.firebaseio.com",
   projectId: "h2s-student-management",
