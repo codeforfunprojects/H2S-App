@@ -38,6 +38,7 @@ const Home = props => {
     async function fetchStudentsGroups(params) {
       let allStudents = await getAllStudents();
       let allGroups = await getAllGroups();
+      allStudents = allStudents.reverse().sort();
       allGroups = allGroups.sort(groupCompare);
       setStudents(allStudents);
       setGroups(allGroups);
@@ -98,7 +99,6 @@ const Home = props => {
 
         setGroups(groupSearch);
       }
-      //   setGroups(value);
     }
   };
 
@@ -117,31 +117,28 @@ const Home = props => {
     setStudents(students);
     forceUpdate();
   };
-  return (
-    <Paper className={classes.paper}>
-      <TabBar
-        value={tab}
-        onChange={setTab}
-        tabs={["Students", "Groups"]}
-        updateLists={updateSort}
-      />
-      {tab === 0 &&
-        (reset.students.length === 0 ? (
-          <LoadingPage />
-        ) : (
+  if (reset.groups.length === 0) {
+    return <LoadingPage />;
+  } else {
+    return (
+      <Paper className={classes.paper}>
+        <TabBar
+          value={tab}
+          onChange={setTab}
+          tabs={["Students", "Groups"]}
+          updateLists={updateSort}
+        />
+        {tab === 0 && (
           <StudentList
             toggleCheckin={toggleCheckin}
             check
             students={students}
           />
-        ))}
-      {tab === 1 && reset.groups.length === 0 ? (
-        <LoadingPage />
-      ) : (
-        <GroupList groups={groups} />
-      )}
-    </Paper>
-  );
+        )}
+        {tab === 1 && <GroupList groups={groups} />}
+      </Paper>
+    );
+  }
 };
 
 Home.propTypes = {

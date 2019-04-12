@@ -19,7 +19,6 @@ import UpdateButton from "../UpdateButton";
 // FIXME: Add loading spinner for when array === []
 const StudentList = props => {
   const { classes, students, toggleCheckin, history } = props;
-
   const studentLI = students.map(student => {
     return (
       <ListItem
