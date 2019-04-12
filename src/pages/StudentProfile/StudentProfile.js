@@ -12,8 +12,11 @@ import {
   List,
   ListItem,
   Typography,
-  LinearProgress
+  LinearProgress,
+  ListItemText,
+  ListItemAvatar
 } from "@material-ui/core";
+import { Done, RemoveCircle } from "@material-ui/icons";
 import CheckInButton from "../../components/CheckInButton";
 import UpdateButton from "../../components/UpdateButton";
 import { getStudent, checkIn } from "../../services/api";
@@ -22,15 +25,6 @@ import LoadingPage from "../../components/LoadingPage";
 const StudentProfile = props => {
   const { classes, match } = props;
   const [student, setStudent] = useState(null);
-  let level, barValue;
-
-  if (student !== null) {
-    let cursus = student.cursus_users.find(element => {
-      return element.cursus_id === 17;
-    });
-    level = cursus.level;
-    barValue = level - Math.floor(level);
-  }
 
   useEffect(() => {
     async function fetchProfile() {
@@ -38,11 +32,13 @@ const StudentProfile = props => {
       let cursus = profile.cursus_users.find(element => {
         return element.cursus_id === 17;
       });
-      level = cursus.level;
-      barValue = (level - Math.floor(level)) * 100;
+      profile.current_project = profile.projects_users.find(project => {
+        return project.status === "in_progress";
+      });
+      let level = cursus.level;
+      let barValue = (level - Math.floor(level)) * 100;
       profile = { ...profile, level, barValue };
       setStudent(profile);
-      console.log(profile);
     }
     fetchProfile();
   }, []);
@@ -72,11 +68,23 @@ const StudentProfile = props => {
                     <Typography variant="h4">{student.displayname}</Typography>
                   </ListItem>
                   <ListItem>
-                    <Typography variant="subtitle1">Current Group:</Typography>
+                    {student.hasOwnProperty("group") ? (
+                      <>
+                        <Avatar src={student.group.image_url} />
+                        <Typography
+                          style={{ paddingLeft: "8px" }}
+                          variant="subtitle1"
+                        >
+                          {student.group.name}
+                        </Typography>
+                      </>
+                    ) : (
+                      <Typography variant="subtitle1"> No Group</Typography>
+                    )}
                   </ListItem>
                   <ListItem>
                     <Typography variant="subtitle1">
-                      Current Project:
+                      Current Project: {student.current_project.project.name}
                     </Typography>
                   </ListItem>
                 </List>
@@ -86,7 +94,16 @@ const StudentProfile = props => {
                   checkedIn={student.checkin_status}
                   toggle={toggleCheckin}
                 />
-                <UpdateButton student={student} />
+                <div
+                  style={{
+                    margin: "8px 10px",
+                    padding: 0,
+                    display: "flex",
+                    justifyContent: "flex-end"
+                  }}
+                >
+                  <UpdateButton student={student} />
+                </div>
               </Grid>
               <Grid item xs={12} className={classes.progressGrid}>
                 <LinearProgress
@@ -111,13 +128,31 @@ const StudentProfile = props => {
         <Paper className={classes.paper}>
           <Typography variant="h6">Projects</Typography>
           <hr />
-          {/* TODO: Projects Content */}
+          <List>
+            {student.projects_users.map(project => {
+              if (project.status === "parent") {
+                return null;
+              }
+              return (
+                <ListItem>
+                  <ListItemAvatar>
+                    {project.status === "finished" ? (
+                      <Done color="secondary" />
+                    ) : (
+                      <RemoveCircle color="primary" />
+                    )}
+                  </ListItemAvatar>
+                  <ListItemText primary={project.project.name} />
+                </ListItem>
+              );
+            })}
+          </List>
         </Paper>
       </Grid>
       <Grid item xs={6}>
         {/* Recent Evaluations */}
         <Paper className={classes.paper}>
-          <Typography variant="h6">Past Evaluations</Typography>
+          <Typography variant="h6">Evaluations</Typography>
           <hr />
           {/* TODO: Evaluation Content */}
         </Paper>
