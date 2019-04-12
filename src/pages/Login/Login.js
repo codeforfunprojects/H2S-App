@@ -37,8 +37,7 @@ const Login = props => {
 
   useEffect(() => {
     let cacheUser = JSON.parse(localStorage.getItem("user"));
-    console.log(cacheUser);
-    if (typeof cacheUser !== "undefined") {
+    if (typeof cacheUser !== "undefined" && !(cacheUser === null)) {
       auth.setUser(cacheUser);
       history.push("/");
     }

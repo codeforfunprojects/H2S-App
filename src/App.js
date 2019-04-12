@@ -17,10 +17,9 @@ import { UserContext } from "./services/UserContext";
 // TODO: Mobile styling
 const App = props => {
   const { classes } = props;
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const state = { user, setUser };
-  let auth;
-  auth = Object.entries(user).length === 0 && user.constructor === Object;
+  const auth = user === null ? false : true;
 
   return (
     <UserContext.Provider value={state}>
@@ -28,23 +27,23 @@ const App = props => {
         <Router>
           <Route path="/login" component={Login} />
           <PrivateRoute
-            isAuthenticated={!auth}
+            isAuthenticated={auth}
             path="/"
             exact
             component={Home}
           />
           <PrivateRoute
-            isAuthenticated={!auth}
+            isAuthenticated={auth}
             path="/student/:user"
             component={StudentProfile}
           />
           <PrivateRoute
-            isAuthenticated={!auth}
+            isAuthenticated={auth}
             path="/group/:group"
             component={GroupProfile}
           />
           <PrivateRoute
-            isAuthenticated={!auth}
+            isAuthenticated={auth}
             path="/eval/:user"
             component={Evaluation}
           />
