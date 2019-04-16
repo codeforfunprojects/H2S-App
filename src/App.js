@@ -7,13 +7,11 @@ import PrivateRoute from "./components/PrivateRoute";
 import withRoot from "./withRoot";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import Evaluation from "./pages/Evaluation";
 import StudentProfile from "./pages/StudentProfile";
 import GroupProfile from "./pages/GroupProfile";
 import "typeface-roboto";
 import { UserContext } from "./services/UserContext";
 
-// Bonus TODOs
 // TODO: Mobile styling
 const App = props => {
   const { classes } = props;
@@ -41,11 +39,6 @@ const App = props => {
             isAuthenticated={auth}
             path="/group/:group"
             component={GroupProfile}
-          />
-          <PrivateRoute
-            isAuthenticated={auth}
-            path="/eval/:user"
-            component={Evaluation}
           />
         </Router>
         {user ? (
