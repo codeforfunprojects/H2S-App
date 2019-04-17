@@ -45,7 +45,7 @@ const App = props => {
           <a
             className={classes.logout}
             onClick={() => {
-              localStorage.removeItem("user");
+              logout(); //TODO: Import
               setUser(null);
             }}
             href="/login"

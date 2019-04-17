@@ -16,27 +16,7 @@ const config = {
   messagingSenderId: "540291206026"
 };
 
-class Firebase {
-  constructor() {
-    app.initializeApp(config);
-    this.auth = app.auth();
-    this.db = app.firestore();
-  }
+app.initializeApp(config);
+const Auth = app.auth();
 
-  async login(email, password) {
-    return await this.auth.signInWithEmailAndPassword(email, password);
-  }
-
-  logout() {
-    return this.auth.signOut();
-  }
-
-  async register(name, email, password) {
-    await this.auth.createUserWithEmailAndPassword(email, password);
-    return this.auth.currentUser.updateProfile({
-      displayName: name
-    });
-  }
-}
-
-export default new Firebase();
+export default Auth;
