@@ -17,16 +17,26 @@ const getStudent = async login => {
 const addGoal = async (login, goal) => {
   const response = await authAxios.post(
     `https://h2s-sms-api.herokuapp.com/evaluations/${login}`,
-    { evaluation: { goal } }
+    { progress: { goal } }
   );
   return response.data;
 };
 
-const updateEvaluation = async (login, evaluation) => {
+const updateEvaluation = async (login, evaluation, user) => {
+  let { displayname, email, uid } = user;
+  const progress = {
+    mentor: {
+      displayname,
+      email,
+      uid
+    },
+    ...evaluation
+  };
   const response = await authAxios.patch(
-    `https://h2s-sms-api.herokuapp.com/evaluations/${login}`,
-    { evaluation }
+    `http://localhost:8080/evaluations/${login}`,
+    { progress }
   );
+  // `https://h2s-sms-api.herokuapp.com/evaluations/${login}`,
   return response.data;
 };
 
