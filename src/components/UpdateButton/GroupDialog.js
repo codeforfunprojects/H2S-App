@@ -41,8 +41,6 @@ const GroupDialog = props => {
             <Select
               value={group}
               onChange={e => {
-                console.log(e.target);
-
                 setGroup(e.target.value);
               }}
               input={<Input name="group" id="group-label-placeholder" />}

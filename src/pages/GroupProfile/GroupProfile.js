@@ -28,7 +28,6 @@ const GroupProfile = props => {
     };
     fetchGroup();
   }, []);
-  console.log(group);
 
   return group ? (
     <Grid className={classes.baseGrid} container spacing={24}>

@@ -24,18 +24,28 @@ const logout = () => {
   return auth.signOut();
 };
 
-const register = async (email, password) => {
+const register = async (user, code) => {
+  let role;
+  if (code === process.env.REACT_APP_ADMIN_CODE) {
+    role = "admin";
+  } else if (code === process.env.REACT_APP_MENTOR_CODE) {
+    role = "mentor";
+  } else {
+    throw new Error("Invalid registration code");
+  }
   try {
-    const authResponse = await this.auth.createUserWithEmailAndPassword(
-      email,
-      password
+    const authResponse = await auth.createUserWithEmailAndPassword(
+      user.email,
+      user.password
     );
-    const userResponse = await authAxios.get(`http://localhost:8080/user`, {
-      email,
-      role: "mentor"
+    delete user.password;
+    delete user.confirmPassword;
+    const userResponse = await authAxios.post(`http://localhost:8080/user`, {
+      user: { ...user, role }
     });
-    let user = { ...userResponse.data, uid: authResponse.user.uid };
-    return user;
+    let newUser = { ...userResponse.data, uid: authResponse.user.uid };
+    localStorage.setItem("user", JSON.stringify(newUser));
+    return newUser;
   } catch (error) {
     throw error;
   }

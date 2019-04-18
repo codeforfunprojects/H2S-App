@@ -1,4 +1,4 @@
-// Login styles
+// Register styles
 const styles = theme => ({
   main: {
     width: "auto",
@@ -19,9 +19,9 @@ const styles = theme => ({
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
       .spacing.unit * 3}px`
   },
-  accountCircle: {
+  avatar: {
     margin: theme.spacing.unit,
-    fontSize: 64
+    backgroundColor: theme.palette.secondary.main
   },
   form: {
     width: "100%", // Fix IE 11 issue.
