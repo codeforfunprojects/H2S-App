@@ -26,8 +26,20 @@ const logout = () => {
 };
 
 const register = async (email, password) => {
-  await this.auth.createUserWithEmailAndPassword(email, password);
-  // TODO: Add to API and return full user
+  try {
+    const authResponse = await this.auth.createUserWithEmailAndPassword(
+      email,
+      password
+    );
+    const userResponse = await authAxios.get(`http://localhost:8080/user`, {
+      email,
+      role: "mentor"
+    });
+    let user = { ...userResponse.data, uid: authResponse.user.uid };
+    return user;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export { login, logout, register };
