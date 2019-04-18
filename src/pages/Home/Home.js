@@ -10,9 +10,6 @@ import GroupList from "../../components/GroupList";
 import { getAllStudents, getAllGroups, checkIn } from "../../services/API";
 import LoadingPage from "../../components/LoadingPage";
 
-// TODO: Method for search
-// TODO: Method for filter
-
 const groupCompare = (a, b) => {
   if (a.name > b.name) {
     return 1;

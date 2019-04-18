@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
-import { UserContext } from "../../services/UserContext";
+import UserContext from "../../services/UserContext";
 import { login } from "../../services/API";
 import {
   Paper,
@@ -26,7 +26,7 @@ const Login = props => {
 
   const authenticate = async () => {
     try {
-      const { user } = await login(email, password); // TODO:
+      const { user } = await login(email, password);
       auth.setUser(user);
       history.push("/");
     } catch (error) {

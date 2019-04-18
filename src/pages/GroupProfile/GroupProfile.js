@@ -12,7 +12,8 @@ import {
   Avatar,
   List,
   ListItem,
-  Typography
+  Typography,
+  Divider
 } from "@material-ui/core";
 import { getGroup } from "../../services/API";
 
@@ -56,8 +57,7 @@ const GroupProfile = props => {
       <Grid item xs={6}>
         <Paper className={classes.paper}>
           <Typography variant="h6">Students</Typography>
-          <hr />
-          {/* TODO: Needs to add to group */}
+          <Divider />
           {/* TODO: Needs to be sorted checked in/out */}
           <StudentList profile={true} students={group.students} />
         </Paper>
@@ -66,7 +66,7 @@ const GroupProfile = props => {
         {/* Projects */}
         <Paper className={classes.paper}>
           <Typography variant="h6">Projects</Typography>
-          <hr />
+          <Divider />
           <List className={classes.list}>
             {group.children &&
               group.children.map(element => {

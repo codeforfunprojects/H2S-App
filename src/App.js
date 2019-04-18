@@ -10,7 +10,7 @@ import Home from "./pages/Home";
 import StudentProfile from "./pages/StudentProfile";
 import GroupProfile from "./pages/GroupProfile";
 import "typeface-roboto";
-import { UserContext } from "./services/UserContext";
+import UserContext from "./services/UserContext";
 import { logout } from "./services/API";
 
 // TODO: Mobile styling

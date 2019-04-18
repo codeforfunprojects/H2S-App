@@ -4,7 +4,6 @@ import auth from "./firebase";
 const login = async (email, password) => {
   try {
     const authResponse = await auth.signInWithEmailAndPassword(email, password);
-    console.log(authResponse);
 
     let { displayName, uid, refreshToken } = authResponse.user;
     let userResponse = await authAxios.get(

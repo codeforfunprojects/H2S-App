@@ -14,7 +14,8 @@ import {
   Typography,
   LinearProgress,
   ListItemText,
-  ListItemAvatar
+  ListItemAvatar,
+  Divider
 } from "@material-ui/core";
 import { Done, RemoveCircle } from "@material-ui/icons";
 import CheckInButton from "../../components/CheckInButton";
@@ -126,7 +127,7 @@ const StudentProfile = props => {
       <Grid item xs={6}>
         <Paper className={classes.paper}>
           <Typography variant="h6">Attendance Tracker</Typography>
-          <hr />
+          <Divider />
           {/* TODO: Attendance Content */}
         </Paper>
       </Grid>
@@ -134,7 +135,7 @@ const StudentProfile = props => {
         {/* Projects */}
         <Paper className={classes.paper}>
           <Typography variant="h6">Projects</Typography>
-          <hr />
+          <Divider />
           <List className={classes.list}>
             {student.projects_users.map(project => {
               if (project.status === "parent") {
@@ -160,7 +161,7 @@ const StudentProfile = props => {
         {/* Recent Evaluations */}
         <Paper className={classes.paper}>
           <Typography variant="h6">Evaluations</Typography>
-          <hr />
+          <Divider />
           {/* TODO: Evaluation Content */}
         </Paper>
       </Grid>
@@ -168,7 +169,7 @@ const StudentProfile = props => {
         {/* Badges */}
         <Paper className={classes.paper}>
           <Typography variant="h6">Badges</Typography>
-          <hr />
+          <Divider />
           {/* LOW TODO: Badges/Skills/Achievments Content */}
         </Paper>
       </Grid>
