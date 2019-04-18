@@ -17,7 +17,7 @@ import {
   FormControlLabel,
   Radio
 } from "@material-ui/core";
-import { updateEvaluation } from "../../services/api";
+import { updateEvaluation } from "../../services/API";
 
 const EvalDialog = props => {
   const { classes, student, open, handleClose } = props;

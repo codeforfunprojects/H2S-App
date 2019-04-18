@@ -17,7 +17,7 @@ import {
   Select,
   MenuItem
 } from "@material-ui/core";
-import { addStudentToGroup } from "../../services/api";
+import { addStudentToGroup } from "../../services/API";
 
 const GroupDialog = props => {
   const { classes, student, open, handleClose } = props;

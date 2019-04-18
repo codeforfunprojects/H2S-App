@@ -14,7 +14,7 @@ import {
   ListItem,
   Typography
 } from "@material-ui/core";
-import { getGroup } from "../../services/api";
+import { getGroup } from "../../services/API";
 
 const GroupProfile = props => {
   const { classes, match } = props;

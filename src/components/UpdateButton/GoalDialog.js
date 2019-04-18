@@ -16,7 +16,7 @@ import {
   InputLabel,
   Input
 } from "@material-ui/core";
-import { addGoal } from "../../services/api";
+import { addGoal } from "../../services/API";
 
 const GoalDialog = props => {
   const { classes, student, open, handleClose } = props;

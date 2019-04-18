@@ -19,7 +19,7 @@ import {
 import { Done, RemoveCircle } from "@material-ui/icons";
 import CheckInButton from "../../components/CheckInButton";
 import UpdateButton from "../../components/UpdateButton";
-import { getStudent, checkIn } from "../../services/api";
+import { getStudent, checkIn } from "../../services/API";
 import LoadingPage from "../../components/LoadingPage";
 
 const StudentProfile = props => {

@@ -11,6 +11,7 @@ import StudentProfile from "./pages/StudentProfile";
 import GroupProfile from "./pages/GroupProfile";
 import "typeface-roboto";
 import { UserContext } from "./services/UserContext";
+import { logout } from "./services/API";
 
 // TODO: Mobile styling
 const App = props => {
@@ -45,7 +46,7 @@ const App = props => {
           <a
             className={classes.logout}
             onClick={() => {
-              logout(); //TODO: Import
+              logout();
               setUser(null);
             }}
             href="/login"

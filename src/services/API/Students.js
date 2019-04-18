@@ -40,4 +40,4 @@ const checkIn = async (login, val) => {
   return response.data;
 };
 
-export { getAllStudents, getAllGroups, getStudent, updateEvaluation, checkIn };
+export { getAllStudents, getStudent, addGoal, updateEvaluation, checkIn };
