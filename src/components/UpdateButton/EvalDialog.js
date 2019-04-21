@@ -17,10 +17,10 @@ import {
   FormControlLabel,
   Radio
 } from "@material-ui/core";
-import { updateEvaluation } from "../../services/api";
+import { updateEvaluation } from "../../services/API";
 
 const EvalDialog = props => {
-  const { classes, student, open, handleClose } = props;
+  const { classes, student, open, handleClose, user } = props;
   const today = moment().format("L");
   const [progress, setProgress] = useState("");
   const [goalStatus, setGoalStatus] = useState(false);
@@ -31,7 +31,7 @@ const EvalDialog = props => {
     if (!progress) {
       alert("Progess field is required");
     } else {
-      updateEvaluation(student.login, evaluation);
+      updateEvaluation(student.login, evaluation, user);
       handleClose();
     }
   };

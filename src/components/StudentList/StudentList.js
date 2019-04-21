@@ -16,14 +16,12 @@ import {
 import CheckInButton from "../CheckInButton";
 import UpdateButton from "../UpdateButton";
 
-// FIXME: Add loading spinner for when array === []
 const StudentList = props => {
   const { classes, students, toggleCheckin, history, profile } = props;
   let listStyle = null;
   if (profile) {
     listStyle = classes.scrollCard;
   }
-  console.log(listStyle);
 
   const studentLI = students.map(student => {
     return (

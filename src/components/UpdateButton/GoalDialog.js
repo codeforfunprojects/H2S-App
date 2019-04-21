@@ -16,10 +16,10 @@ import {
   InputLabel,
   Input
 } from "@material-ui/core";
-import { addGoal } from "../../services/api";
+import { addGoal } from "../../services/API";
 
 const GoalDialog = props => {
-  const { classes, student, open, handleClose } = props;
+  const { classes, student, open, handleClose, user } = props;
   const regex = /(\s)/gi;
   const today = moment()
     .format("MM DD YYYY")
@@ -60,7 +60,7 @@ const GoalDialog = props => {
           </Button>
           <Button
             onClick={() => {
-              addGoal(student.login, goal);
+              addGoal(student.login, goal, user);
               handleClose();
             }}
             color="primary"

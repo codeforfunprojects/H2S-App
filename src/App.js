@@ -6,11 +6,13 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import withRoot from "./withRoot";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Home from "./pages/Home";
 import StudentProfile from "./pages/StudentProfile";
 import GroupProfile from "./pages/GroupProfile";
 import "typeface-roboto";
-import { UserContext } from "./services/UserContext";
+import UserContext from "./services/UserContext";
+import { logout } from "./services/API";
 
 // TODO: Mobile styling
 const App = props => {
@@ -24,6 +26,7 @@ const App = props => {
       <div className={classes.background}>
         <Router>
           <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
           <PrivateRoute
             isAuthenticated={auth}
             path="/"
@@ -45,7 +48,7 @@ const App = props => {
           <a
             className={classes.logout}
             onClick={() => {
-              localStorage.removeItem("user");
+              logout();
               setUser(null);
             }}
             href="/login"

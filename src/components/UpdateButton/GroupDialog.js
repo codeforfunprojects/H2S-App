@@ -17,7 +17,7 @@ import {
   Select,
   MenuItem
 } from "@material-ui/core";
-import { addStudentToGroup } from "../../services/api";
+import { addStudentToGroup } from "../../services/API";
 
 const GroupDialog = props => {
   const { classes, student, open, handleClose } = props;
@@ -41,8 +41,6 @@ const GroupDialog = props => {
             <Select
               value={group}
               onChange={e => {
-                console.log(e.target);
-
                 setGroup(e.target.value);
               }}
               input={<Input name="group" id="group-label-placeholder" />}

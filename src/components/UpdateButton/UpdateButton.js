@@ -1,5 +1,5 @@
 // UpdateButton component
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
@@ -7,9 +7,12 @@ import { Button, Menu, MenuItem } from "@material-ui/core";
 import GoalDialog from "./GoalDialog";
 import EvalDialog from "./EvalDialog";
 import GroupDialog from "./GroupDialog";
+import UserContext from "../../services/UserContext";
 
+// TODO: User propTypes
 const UpdateButton = props => {
   const { classes, student } = props;
+  const auth = useContext(UserContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const [showGoal, setShowGoal] = useState(false);
   const [showEval, setShowEval] = useState(false);
@@ -66,6 +69,7 @@ const UpdateButton = props => {
           setShowGoal(false);
         }}
         student={student}
+        user={auth.user}
       />
       <EvalDialog
         open={showEval}
@@ -73,6 +77,7 @@ const UpdateButton = props => {
           setShowEval(false);
         }}
         student={student}
+        user={auth.user}
       />
       <GroupDialog
         open={showGroup}

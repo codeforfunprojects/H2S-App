@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
-import { UserContext } from "../../services/UserContext";
-import firebase from "../../services/firebase";
+import UserContext from "../../services/UserContext";
+import { login } from "../../services/API";
 import {
   Paper,
   Avatar,
@@ -26,9 +26,8 @@ const Login = props => {
 
   const authenticate = async () => {
     try {
-      const { user } = await firebase.login(email, password);
+      const { user } = await login(email, password);
       auth.setUser(user);
-      localStorage.setItem("user", JSON.stringify(user));
       history.push("/");
     } catch (error) {
       alert(error.message);

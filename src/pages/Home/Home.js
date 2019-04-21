@@ -7,11 +7,8 @@ import TabBar from "../../components/TabBar";
 // import CoverImage from "../../components/CoverImage";
 import StudentList from "../../components/StudentList";
 import GroupList from "../../components/GroupList";
-import { getAllStudents, getAllGroups, checkIn } from "../../services/api";
+import { getAllStudents, getAllGroups, checkIn } from "../../services/API";
 import LoadingPage from "../../components/LoadingPage";
-
-// TODO: Method for search
-// TODO: Method for filter
 
 const groupCompare = (a, b) => {
   if (a.name > b.name) {

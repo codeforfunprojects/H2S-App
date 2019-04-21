@@ -16,7 +16,6 @@ import {
 import SearchIcon from "@material-ui/icons/Search";
 import styles from "./styles";
 
-// TODO: Filter and search need to be setup
 const TabBar = props => {
   const { tabs, value, onChange, updateLists, classes } = props;
   const [sortTab, setSortTab] = useState("abc");
