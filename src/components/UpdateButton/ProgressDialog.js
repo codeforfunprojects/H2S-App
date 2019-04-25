@@ -100,6 +100,9 @@ const ProgressDialog = props => {
       student.progress.hasOwnProperty(day)
     ) {
       // TODO: check for previous report
+      if (typeof student.progress[day].progress !== "undefined") {
+        return alert(`No update submitted. A report for today already exists`);
+      }
       if (!report.progress) {
         alert("Progess field is required");
       } else {
