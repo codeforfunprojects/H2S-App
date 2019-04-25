@@ -5,7 +5,7 @@ import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import { Button, Menu, MenuItem } from "@material-ui/core";
 import GoalDialog from "./GoalDialog";
-import EvalDialog from "./EvalDialog";
+import ProgressDialog from "./ProgressDialog";
 import GroupDialog from "./GroupDialog";
 import UserContext from "../../services/UserContext";
 
@@ -71,7 +71,7 @@ const UpdateButton = props => {
         student={student}
         user={auth.user}
       />
-      <EvalDialog
+      <ProgressDialog
         open={showEval}
         handleClose={() => {
           setShowEval(false);

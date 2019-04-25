@@ -1,4 +1,4 @@
-// TODO: EvalDialog component
+// ProgressDialog component
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles";
@@ -17,21 +17,21 @@ import {
   FormControlLabel,
   Radio
 } from "@material-ui/core";
-import { updateEvaluation } from "../../services/API";
+import { updateProgress } from "../../services/API";
 
-const EvalDialog = props => {
+const ProgressDialog = props => {
   const { classes, student, open, handleClose, user } = props;
   const today = moment().format("L");
   const [progress, setProgress] = useState("");
   const [goalStatus, setGoalStatus] = useState(false);
   const [comments, setComments] = useState("");
 
-  const submitEval = () => {
-    let evaluation = { progress, goalStatus, comments };
+  const submitReport = () => {
+    let report = { progress, goalStatus, comments };
     if (!progress) {
       alert("Progess field is required");
     } else {
-      updateEvaluation(student.login, evaluation, user);
+      updateProgress(student.login, report, user);
       handleClose();
     }
   };
@@ -117,7 +117,7 @@ const EvalDialog = props => {
           </Button>
           <Button
             onClick={() => {
-              submitEval();
+              submitReport();
             }}
             color="primary"
           >
@@ -129,9 +129,9 @@ const EvalDialog = props => {
   );
 };
 
-EvalDialog.propTypes = {
+ProgressDialog.propTypes = {
   classes: PropTypes.object.isRequired,
   student: PropTypes.object.isRequired
 };
 
-export default withRouter(withStyles(styles)(EvalDialog));
+export default withRouter(withStyles(styles)(ProgressDialog));
