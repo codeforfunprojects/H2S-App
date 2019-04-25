@@ -1,6 +1,5 @@
 import authAxios from "./AuthAxios";
-const API_URL = "http://localhost:8080";
-// https://h2s-sms-api.herokuapp.com
+import { API_URL } from "./index";
 
 const getAllStudents = async () => {
   const response = await authAxios.get(`${API_URL}/students`);
@@ -16,8 +15,22 @@ const addGoal = async (login, goal) => {
   const response = await authAxios.post(`${API_URL}/progress/${login}`, {
     progress: { goal }
   });
-  console.log(response);
+  return response.data;
+};
 
+const addProgress = async (login, report, user) => {
+  let { displayname, email, uid } = user;
+  const progress = {
+    mentor: {
+      displayname,
+      email,
+      uid
+    },
+    ...report
+  };
+  const response = await authAxios.post(`${API_URL}/progress/${login}`, {
+    progress
+  });
   return response.data;
 };
 
@@ -44,4 +57,11 @@ const checkIn = async (login, val) => {
   return response.data;
 };
 
-export { getAllStudents, getStudent, addGoal, updateProgress, checkIn };
+export {
+  getAllStudents,
+  getStudent,
+  addGoal,
+  addProgress,
+  updateProgress,
+  checkIn
+};

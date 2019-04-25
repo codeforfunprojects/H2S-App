@@ -17,29 +17,30 @@ import {
   FormControlLabel,
   Radio
 } from "@material-ui/core";
-import { updateProgress } from "../../services/API";
+import { addProgress, updateProgress } from "../../services/API";
+const MissingGoalDialog = props => {
+  const {
+    classes,
+    open,
+    handleClose,
+    today,
+    name,
+    report,
+    user,
+    login
+  } = props;
+  const [goal, setGoal] = useState("");
 
-const ProgressDialog = props => {
-  const { classes, student, open, handleClose, user } = props;
-  const today = moment().format("L");
-  const [progress, setProgress] = useState("");
-  const [goalStatus, setGoalStatus] = useState(false);
-  const [comments, setComments] = useState("");
-
-  const submitReport = () => {
-    let report = { progress, goalStatus, comments };
-    if (!progress) {
-      alert("Progess field is required");
-    } else {
-      updateProgress(student.login, report, user);
-      handleClose();
-    }
+  const handleSubmit = () => {
+    let fullReport = { ...report, goal };
+    addProgress(login, fullReport, user);
+    handleClose();
   };
 
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>
-        {student.displayname} {today}
+        {name} {today}
       </DialogTitle>
       <DialogContent>
         <form
@@ -50,63 +51,13 @@ const ProgressDialog = props => {
         >
           <FormControl margin="normal" required fullWidth>
             <Typography component="h2" variant="h6">
-              What progress did the student make today?
+              What was {name}'s goal today?
             </Typography>
             <Input
-              value={progress}
+              value={goal}
+              name="goal"
               onChange={e => {
-                setProgress(e.target.value);
-              }}
-            />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <Typography component="h2" variant="h6">
-              Did they reach their daily goal?
-            </Typography>
-            <div className={classes.radioRow}>
-              <FormControlLabel
-                value="start"
-                control={
-                  <Radio
-                    checked={!goalStatus}
-                    onChange={() => {
-                      setGoalStatus(false);
-                    }}
-                    name="radio-button-demo"
-                    classes={{
-                      root: classes.redRadio,
-                      checked: classes.checked
-                    }}
-                  />
-                }
-                label="No"
-                labelPlacement="start"
-              />
-              <FormControlLabel
-                value="start"
-                control={
-                  <Radio
-                    checked={goalStatus}
-                    onChange={() => {
-                      setGoalStatus(true);
-                    }}
-                    name="radio-button-demo"
-                  />
-                }
-                label="Yes"
-                labelPlacement="start"
-              />
-            </div>
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <Typography component="h2" variant="h6">
-              Do you have any additional comments about how the student is
-              doing?
-            </Typography>
-            <Input
-              value={comments}
-              onChange={e => {
-                setComments(e.target.value);
+                setGoal(e.target.value);
               }}
             />
           </FormControl>
@@ -115,17 +66,144 @@ const ProgressDialog = props => {
           <Button onClick={handleClose} color="default">
             Cancel
           </Button>
-          <Button
-            onClick={() => {
-              submitReport();
-            }}
-            color="primary"
-          >
+          <Button onClick={handleSubmit} color="primary">
             Submit
           </Button>
         </DialogActions>
       </DialogContent>
     </Dialog>
+  );
+};
+
+const ProgressDialog = props => {
+  const { classes, student, open, handleClose, user } = props;
+  const today = moment().format("L");
+  const [report, setReport] = useState({
+    progress: "",
+    goalStatus: false,
+    comments: ""
+  });
+  const [goalOpen, setGoalOpen] = useState(false);
+
+  const handleChange = e => {
+    const {
+      target: { value, name }
+    } = e;
+    let reportUpdate = { ...report, [name]: value };
+    setReport(reportUpdate);
+  };
+
+  const submitReport = () => {
+    let day = moment().format("MM-DD-YYYY");
+    if (
+      typeof student.progress !== "undefined" &&
+      student.progress.hasOwnProperty(day)
+    ) {
+      // TODO: check for previous report
+      if (!report.progress) {
+        alert("Progess field is required");
+      } else {
+        updateProgress(student.login, report, user);
+        handleClose();
+      }
+    } else {
+      alert("Progress must start with Goal");
+      setGoalOpen(true);
+      handleClose();
+    }
+  };
+  const { progress, goalStatus, comments } = report;
+
+  return (
+    <>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>
+          {student.displayname} {today}
+        </DialogTitle>
+        <DialogContent>
+          <form
+            className={classes.form}
+            onSubmit={e => {
+              e.preventDefault();
+            }}
+          >
+            <FormControl margin="normal" required fullWidth>
+              <Typography component="h2" variant="h6">
+                What progress did the student make today?
+              </Typography>
+              <Input value={progress} name="progress" onChange={handleChange} />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <Typography component="h2" variant="h6">
+                Did they reach their daily goal?
+              </Typography>
+              <div className={classes.radioRow}>
+                <FormControlLabel
+                  control={
+                    <Radio
+                      checked={goalStatus === "false"}
+                      value={false}
+                      onChange={handleChange}
+                      name="goalStatus"
+                      classes={{
+                        root: classes.redRadio,
+                        checked: classes.checked
+                      }}
+                    />
+                  }
+                  label="No"
+                  labelPlacement="start"
+                />
+                <FormControlLabel
+                  control={
+                    <Radio
+                      checked={goalStatus === "true"}
+                      value={true}
+                      onChange={handleChange}
+                      name="goalStatus"
+                    />
+                  }
+                  label="Yes"
+                  labelPlacement="start"
+                />
+              </div>
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <Typography component="h2" variant="h6">
+                Do you have any additional comments about how the student is
+                doing?
+              </Typography>
+              <Input value={comments} name="comments" onChange={handleChange} />
+            </FormControl>
+          </form>
+          <DialogActions>
+            <Button onClick={handleClose} color="default">
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                submitReport();
+              }}
+              color="primary"
+            >
+              Submit
+            </Button>
+          </DialogActions>
+        </DialogContent>
+      </Dialog>
+      <MissingGoalDialog
+        classes={classes}
+        open={goalOpen}
+        handleClose={() => {
+          setGoalOpen(false);
+        }}
+        today={today}
+        name={student.displayname}
+        login={student.login}
+        report={report}
+        user={user}
+      />
+    </>
   );
 };
 
