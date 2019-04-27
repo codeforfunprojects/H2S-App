@@ -10,7 +10,6 @@ import UserContext from "../../services/UserContext";
 const CheckInButton = props => {
   const { classes, checkedIn, toggle } = props;
   const auth = useContext(UserContext);
-
   return auth.user.role === "admin" ? (
     <Button
       variant="contained"

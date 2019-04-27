@@ -29,6 +29,10 @@ const styles = theme => ({
   },
   submit: {
     marginTop: theme.spacing.unit * 3
+  },
+  avatar: {
+    backgroundColor: theme.palette.primary.main,
+    marginBottom: theme.spacing.unit
   }
 });
 

@@ -1,15 +1,13 @@
 import authAxios from "./AuthAxios";
 import auth from "./firebase";
+import { API_URL } from "./index";
 
 const login = async (email, password) => {
   try {
     const authResponse = await auth.signInWithEmailAndPassword(email, password);
 
     let { displayName, uid, refreshToken } = authResponse.user;
-    let userResponse = await authAxios.get(
-      `http://localhost:8080/user/${email}`
-    );
-    // `https://h2s-sms-api.herokuapp.com/user/${email}`
+    let userResponse = await authAxios.get(`${API_URL}/user/${email}`);
     let user = { ...userResponse.data, displayName, uid, refreshToken };
 
     localStorage.setItem("user", JSON.stringify(user));
@@ -40,7 +38,7 @@ const register = async (user, code) => {
     );
     delete user.password;
     delete user.confirmPassword;
-    const userResponse = await authAxios.post(`http://localhost:8080/user`, {
+    const userResponse = await authAxios.post(`${API_URL}/user`, {
       user: { ...user, role }
     });
     let newUser = { ...userResponse.data, uid: authResponse.user.uid };
