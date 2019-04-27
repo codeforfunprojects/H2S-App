@@ -28,7 +28,11 @@ const styles = theme => ({
     overflow: "auto"
   },
   buttonGrid: {
-    padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px 0px 0px`
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-end",
+    paddingRight: theme.spacing.unit,
+    paddingTop: theme.spacing.unit
   },
   evalButton: {
     marginTop: theme.spacing.unit * 2,

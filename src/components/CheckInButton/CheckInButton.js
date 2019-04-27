@@ -13,8 +13,8 @@ const CheckInButton = props => {
   return auth.user.role === "admin" ? (
     <Button
       variant="contained"
-      color={checkedIn ? "error" : "secondary"}
-      className={classes.checkInButton}
+      color={checkedIn ? "default" : "secondary"}
+      className={checkedIn ? classes.checkOutButton : classes.checkInButton}
       onClick={() => {
         toggle();
       }}

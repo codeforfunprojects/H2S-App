@@ -102,16 +102,8 @@ const StudentProfile = props => {
                   checkedIn={student.checkin_status}
                   toggle={toggleCheckin}
                 />
-                <div
-                  style={{
-                    margin: "8px 10px",
-                    padding: 0,
-                    display: "flex",
-                    justifyContent: "flex-end"
-                  }}
-                >
-                  <UpdateButton student={student} />
-                </div>
+                <span style={{ margin: 8 }} />
+                <UpdateButton student={student} />
               </Grid>
               <Grid item xs={12} className={classes.progressGrid}>
                 <LinearProgress

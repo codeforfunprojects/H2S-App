@@ -29,12 +29,6 @@ const App = props => {
           <Route path="/register" component={Register} />
           <PrivateRoute
             isAuthenticated={auth}
-            path="/"
-            exact
-            component={Home}
-          />
-          <PrivateRoute
-            isAuthenticated={auth}
             path="/student/:user"
             component={StudentProfile}
           />
@@ -42,6 +36,12 @@ const App = props => {
             isAuthenticated={auth}
             path="/group/:group"
             component={GroupProfile}
+          />
+          <PrivateRoute
+            isAuthenticated={auth}
+            path="/"
+            exact
+            component={Home}
           />
         </Router>
         {user ? (

@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import * as moment from "moment-timezone";
-moment.tz.setDefault("America/Los_Angeles");
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import {
@@ -18,6 +17,7 @@ import {
   Input
 } from "@material-ui/core";
 import { addGoal } from "../../services/API";
+moment.tz.setDefault("America/Los_Angeles");
 
 const GoalDialog = props => {
   const { classes, student, open, handleClose, user } = props;

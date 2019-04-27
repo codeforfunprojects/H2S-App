@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import * as moment from "moment-timezone";
-moment.tz.setDefault("America/Los_Angeles");
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import {
@@ -19,6 +18,8 @@ import {
   Radio
 } from "@material-ui/core";
 import { addProgress, updateProgress } from "../../services/API";
+moment.tz.setDefault("America/Los_Angeles");
+
 const MissingGoalDialog = props => {
   const {
     classes,

@@ -12,7 +12,7 @@ const styles = theme => ({
   },
   updateButton: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     color: "white",
     width: 100
   },

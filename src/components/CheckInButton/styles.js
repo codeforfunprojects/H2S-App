@@ -2,7 +2,12 @@
 const styles = theme => ({
   checkInButton: {
     color: "white",
-    width: "108px"
+    width: "136px"
+  },
+  checkOutButton: {
+    color: "white",
+    width: "136px",
+    backgroundColor: theme.palette.red.main
   },
   iconContainer: {
     display: "flex",

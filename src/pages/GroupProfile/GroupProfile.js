@@ -70,7 +70,13 @@ const GroupProfile = props => {
             {group.children &&
               group.children.map(element => {
                 return (
-                  <ListItem button component="a" href={element.url}>
+                  <ListItem
+                    button
+                    component="a"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={element.url}
+                  >
                     <Typography variant="h6">{element.name}</Typography>
                   </ListItem>
                 );
