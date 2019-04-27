@@ -37,8 +37,8 @@ const StudentList = props => {
         </ListItemAvatar>
         <ListItemText primary={student.displayname} secondary={student.login} />
         <ListItemSecondaryAction>
-          <Grid container>
-            <Grid item xs={6} className={classes.evalGrid}>
+          <Grid container className={classes.buttons} spacing={8}>
+            <Grid item xs={6} className={classes.updateButton}>
               <UpdateButton student={student} />
             </Grid>
             <Grid item xs={6} className={classes.checkInButton}>

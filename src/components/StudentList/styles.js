@@ -7,12 +7,17 @@ const styles = theme => ({
     maxHeight: 240,
     overflow: "auto"
   },
-  evalButton: {
+  buttons: {
+    paddingRight: theme.spacing.unit
+  },
+  updateButton: {
+    display: "flex",
+    justifyContent: "center",
     color: "white",
     width: 100
   },
   checkInButton: {
-    paddingRight: theme.spacing.unit
+    display: "flex"
   }
 });
 
