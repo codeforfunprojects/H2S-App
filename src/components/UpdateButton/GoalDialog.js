@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles";
-import * as moment from "moment";
+import * as moment from "moment-timezone";
+moment.tz.setDefault("America/Los_Angeles");
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import {
