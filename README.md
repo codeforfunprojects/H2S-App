@@ -35,7 +35,7 @@ Our API is deployed using [Heroku](https://heroku.com/). Any changes made on the
 
 > [axios](https://github.com/axios/axios)  
 > [React Router](https://reacttraining.com/react-router/)  
-> [moment-timezone](http://momentjs.com/timezone)
+> [Moment Timezone](http://momentjs.com/timezone)
 
 ## Authors
 
