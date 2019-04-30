@@ -1,6 +1,8 @@
 # H2S Student Management App
 
-This app will help manage Hack High School student check in and daily reports. This app was orginally built for the Build the Bay Hackathon, and is now being updated for actual use with Hack High School.
+This app will help manage Hack High School student check in and daily reports. This app was orginally built for the Build the Bay Hackathon, and is now being updated for actual use with Hack High School. This document is meant to provide guidance for developers. _User instructions_ can be found [here](./.github/USER_INSTRUCTIONS.md).
+
+## Getting Started
 
 ### Prerequisites
 
