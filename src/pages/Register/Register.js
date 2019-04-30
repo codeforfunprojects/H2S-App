@@ -20,6 +20,7 @@ const Register = props => {
   const [user, setUser] = useState({
     displayName: "",
     email: "",
+    intra: "",
     password: "",
     confirmPassword: ""
   });
@@ -70,6 +71,15 @@ const Register = props => {
               name="displayName"
               autoFocus
               value={user.displayName}
+              onChange={handleChange}
+            />
+          </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="email">Intra ID:</InputLabel>
+            <Input
+              id="intra"
+              name="intra"
+              value={user.intra}
               onChange={handleChange}
             />
           </FormControl>
