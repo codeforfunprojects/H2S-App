@@ -12,12 +12,23 @@ _If you need to upgrade / downgrade your Node Js version, you can use [nvm](http
 
 ### Installing & Starting
 
+In order to run the app in development you must also be running the development server.
+
+_In h2s-App_
+
 ```
 npm install
 npm run dev
 ```
 
-_Running_ `npm start` _will serve the most recent build_
+_In h2s-api_
+
+```
+npm install
+npm run start
+```
+
+_Running_ `npm start` _will serve the most recent build using the hosted API_
 
 ## Contributing
 
