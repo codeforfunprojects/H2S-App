@@ -4,12 +4,19 @@ This app will help manage Hack High School student check in and daily reports. T
 
 ## Getting Started
 
+
 ### Prerequisites
 
 - [Node](https://nodejs.org/en/)
+  - version 12.7
 
 _If you need to upgrade / downgrade your Node Js version, you can use [nvm](https://github.com/creationix/nvm)_
+  - `nvm install 12.7`
+  
+- You must get the `.env.development` file from Kai and place it in the root of this repository folder
 
+- You also must have setup the server, following the instructions in the [README.md](https://github.com/kaidrumm/H2S-API/blob/master/README.md)
+ 
 ### Installing & Starting
 
 In order to run the app in development you must also be running the development server.
@@ -17,6 +24,7 @@ In order to run the app in development you must also be running the development 
 _In h2s-App_
 
 ```
+nvm use 12.7
 npm install
 npm run dev
 ```
@@ -29,6 +37,8 @@ npm run start
 ```
 
 _Running_ `npm start` _will serve the most recent build using the hosted API_
+
+- **Trouble Shooting:** Try removing the `/node_modules` & `package-lock.json` files. Then make sure you are running `node 12.7` and run `npm install` again
 
 ## Contributing
 
