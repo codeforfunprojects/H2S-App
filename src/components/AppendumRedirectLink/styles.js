@@ -1,6 +1,6 @@
 // AppendumRedirectLink styles
 
-const styles = () => ({
+const styles = theme => ({
     container: {
         paddingTop: 25
     },
@@ -8,7 +8,7 @@ const styles = () => ({
         color: "#aaaaaa"
     },
     link: {
-        color: "#2296F3",
+        color: theme.palette.primary.dark,
         paddingLeft: 5,
         textDecoration: "none",
         ':hover': {
