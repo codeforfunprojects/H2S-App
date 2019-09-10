@@ -14,6 +14,7 @@ import {
   Button
 } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
+import AppendumRedirectLink from "../../components/AppendumRedirectLink";
 
 const Register = props => {
   const { classes, history } = props;
@@ -136,6 +137,8 @@ const Register = props => {
             Register
           </Button>
         </form>
+        <AppendumRedirectLink text="Already have an account?" linkText="Login" to="/login"/>
+
       </Paper>
     </main>
   );

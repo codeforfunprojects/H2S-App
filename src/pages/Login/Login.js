@@ -16,6 +16,7 @@ import {
   Button
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import AppendumRedirectLink from "../../components/AppendumRedirectLink";
 
 const Login = props => {
   const { classes, history } = props;
@@ -94,6 +95,8 @@ const Login = props => {
             Sign in
           </Button>
         </form>
+        <AppendumRedirectLink text="Don't have an account?" linkText="Register" to="/register"/>
+
       </Paper>
     </main>
   );
