@@ -7,7 +7,7 @@
     "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.1",
     "firebase": "^6.3.4",
-    "moment-timezone": "^0.5.25",
+    "moment-timezone": "^0.5.35",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
